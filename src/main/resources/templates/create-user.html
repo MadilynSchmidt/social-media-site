@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Create Account</title>
+</head>
+
+<body>
+
+<div>
+    <div th:if="${param.invalid}">Please enter a valid email address.</div>
+    <div th:if="${param.exists}">There is already an account associated with the email address you entered.</div>
+    <form th:action="@{/users}" method="post" th:object="${user}">
+        <label for="email">Email:</label>
+        <input type="text" id="email" th:field="*{emailAddress}">
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}">
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+
+</body>
+</html>
