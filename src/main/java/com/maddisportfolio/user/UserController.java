@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/users")
@@ -34,6 +37,18 @@ public class UserController {
             //todo when login html is created, redirect to it instead
             return "create-user";
 
+    }
+
+    @RequestMapping(method = RequestMethod.GET, params = "query")
+    public String searchUsers (@RequestParam("query") String emailAddress, Model model){
+        List<User> searchList = userService.searchUsers(emailAddress);
+        model.addAttribute("users", searchList);
+        return "search-results";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String getSearch(){
+        return "search-users";
     }
 
 }
