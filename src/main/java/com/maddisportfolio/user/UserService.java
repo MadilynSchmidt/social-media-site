@@ -4,6 +4,8 @@ import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -25,5 +27,13 @@ public class UserService {
             throw new InvalidEmailException();
         }
     }
+
+    public List<User> searchUsers(String emailAddress){
+        List<User> searchList = userDao.findByEmailAddressIgnoreCaseContaining(emailAddress);
+        return searchList;
+
+    }
+
+
 
 }
