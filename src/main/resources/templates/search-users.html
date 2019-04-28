@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="'layouts/default'">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/main.css}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Search Users</title>
 </head>
 <body>
 
-<div>
+<div layout:fragment="content">
     <form th:action="@{/users}" method="get">
         <label for="email">Email:</label>
         <input name="query" type="text" id="email">

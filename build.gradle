@@ -55,6 +55,7 @@ dependencies {
     compile('commons-validator:commons-validator:1.6')
     testCompile("junit:junit")
     compile("org.springframework.boot:spring-boot-starter-security")
+    compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.3.0")
     
 
 }
