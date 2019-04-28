@@ -2,6 +2,7 @@ package com.maddisportfolio.user;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,9 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public void createUser(User user) throws InvalidEmailException, EmailExistsException{
 
         User existingUser = userDao.findOneByEmailAddressIgnoreCase(user.getEmailAddress());
@@ -21,6 +25,8 @@ public class UserService {
 
         EmailValidator validator = EmailValidator.getInstance();
         if (validator.isValid(user.getEmailAddress())) {
+            String encodedPassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(encodedPassword);
             userDao.save(user);
         }
         else{

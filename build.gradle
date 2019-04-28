@@ -54,4 +54,7 @@ dependencies {
     compile("org.postgresql:postgresql:42.2.5")
     compile('commons-validator:commons-validator:1.6')
     testCompile("junit:junit")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    
+
 }
