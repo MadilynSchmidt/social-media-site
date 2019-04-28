@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="'layouts/default'">
 
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/main.css}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script th:src="@{/js/create-user.js}"></script>
     <title>Create Account</title>
@@ -14,7 +11,7 @@
 
 <body>
 
-<div id="create-user-form-container">
+<div id="create-user-form-container" layout:fragment="content" >
     <div th:if="${param.invalid}">Please enter a valid email address.</div>
     <div th:if="${param.exists}">There is already an account associated with the email address you entered.</div>
     <form id="create-user-form" th:action="@{/users}" method="post" th:object="${user}">
