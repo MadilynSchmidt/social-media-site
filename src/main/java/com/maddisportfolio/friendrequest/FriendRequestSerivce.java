@@ -16,6 +16,9 @@ public class FriendRequestSerivce {
     public void createFriendRequest(String senderEmailAddress, long recipientId){
         User sender = userDao.findOneByEmailAddressIgnoreCase(senderEmailAddress);
         User recipient = userDao.findById(recipientId).get();
+        if(usersAreSamePerson(sender, recipient)){
+            return;
+        }
         FriendRequest existingFriendRequest = friendRequestDao.findOneBySenderAndRecipient(sender, recipient);
         if(existingFriendRequest != null){
             return;
@@ -25,10 +28,15 @@ public class FriendRequestSerivce {
         friendRequest.setRecipient(recipient);
         friendRequest.setFriendRequestStatus(FriendRequestStatus.PENDING);
         friendRequestDao.save(friendRequest);
-
-
-
     }
+
+    private boolean usersAreSamePerson(User sender, User recipient){
+        if(sender.getId() == recipient.getId()){
+            return true;
+        }
+        return false;
+    }
+
 
 
 }
