@@ -9,7 +9,12 @@
 <body>
 <div layout:fragment="content">
     <ul>
-        <li th:each="user: ${users}" th:text="${user.getEmailAddress()}"></li>
+        <li th:each="user: ${users}">
+            <p th:text="${user.getEmailAddress()}"></p>
+            <form th:if="${loggedInUserEmailAddress != user.getEmailAddress()}" th:action="@{/friend-requests}" method="post">
+                <input type="hidden" name="recipientId" th:value="${user.getId()}">
+                <button type="submit">submit</button>
+            </form>
     </ul>
 </div>
 

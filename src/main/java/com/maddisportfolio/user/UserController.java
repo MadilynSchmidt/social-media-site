@@ -1,6 +1,8 @@
 package com.maddisportfolio.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -43,6 +45,9 @@ public class UserController {
     public String searchUsers (@RequestParam("query") String emailAddress, Model model){
         List<User> searchList = userService.searchUsers(emailAddress);
         model.addAttribute("users", searchList);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String loggedInUserEmailAddress = userDetails.getUsername();
+        model.addAttribute("loggedInUserEmailAddress", loggedInUserEmailAddress);
         return "search-results";
     }
 
