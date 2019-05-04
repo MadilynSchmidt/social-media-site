@@ -27,6 +27,7 @@ public class UserService {
         if (validator.isValid(user.getEmailAddress())) {
             String encodedPassword = passwordEncoder.encode(user.getPassword());
             user.setPassword(encodedPassword);
+            user.setEmailAddress(user.getEmailAddress().toLowerCase());
             userDao.save(user);
         }
         else{
