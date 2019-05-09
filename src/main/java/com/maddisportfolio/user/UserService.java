@@ -21,7 +21,7 @@ public class UserService {
     @Autowired
     private FriendRequestDao friendRequestDao;
 
-    public User returnUser(String loggedInEmailAddress){
+    public User getUser(String loggedInEmailAddress){
         User userToReturn = userDao.findOneByEmailAddressIgnoreCase(loggedInEmailAddress);
         return userToReturn;
     }
