@@ -4,18 +4,28 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="'layouts/default'" >
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script th:src="@{/js/login.js}"></script>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
+
+
 </head>
 <body>
-<div layout:fragment="content">
-    <form th:action="@{/login}" method="post">
+
+<div id="login-container" layout:fragment="content" >
+    <img th:src="@{/images/logo.png}"/>
+    <form id="login-form" th:action="@{/login}" method="post">
         <label for="email">Email:</label>
         <input type="text" id="email" name="username">
         <label for="password">Password:</label>
         <input type="password" id="password" name="password">
-        <button class="btn-lg btn-block mt-3"  type="submit">Submit</button>
+        <button class="btn-lg btn-block mt-3"  type="submit">Login</button>
     </form>
 </div>
 </body>
 </html>
+
+
+
+

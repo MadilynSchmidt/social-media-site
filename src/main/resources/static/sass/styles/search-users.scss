@@ -1,0 +1,38 @@
+@import "styles/variable";
+
+#search-users-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+
+
+
+    #search-users-form{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+
+        button{
+            background-color: $purple;
+            color: white;
+            border: 1px solid grey;
+        }
+
+        input{
+            margin-bottom: .5rem;
+
+            border-radius: 5px;
+            box-shadow: none;
+            border: 1px solid grey;
+        }
+
+        label{
+            margin-bottom: 0;
+        }
+
+    }
+
+}

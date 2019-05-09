@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorator="'layouts/default'">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="'layouts/default'" >
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script th:src="@{/js/search-users.js}"></script>
     <meta charset="UTF-8">
-    <title>Search Users</title>
+    <title>Search users</title>
+
+
 </head>
 <body>
 
-<div layout:fragment="content">
-    <form th:action="@{/users}" method="get">
+<div id="search-users-container" layout:fragment="content">
+    <form id="search-users-form" th:action="@{/users}" method="get">
         <label for="email">Email:</label>
         <input name="query" type="text" id="email">
         <button class="btn-lg btn-block mt-3"  type="submit">Search</button>

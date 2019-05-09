@@ -1,0 +1,29 @@
+@import "styles/variable";
+
+#sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #aa68cd;
+  overflow-x: hidden;
+  padding-top: 20px;
+  border: 1px solid grey;
+}
+
+a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: $white;
+    display: block;
+}
+
+a:hover{
+    color: #818181;
+    text-decoration: none;
+}
+
+

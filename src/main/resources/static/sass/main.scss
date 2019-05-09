@@ -1,7 +1,13 @@
 @import "styles/create-user";
 @import "styles/variable";
+@import "styles/login";
+@import "styles/search-results";
+@import "styles/search-users";
+@import "styles/sidebar";
 
 
 body{
     font-family: 'Roboto', sans-serif;
+    background-color: $grey;
 }
+

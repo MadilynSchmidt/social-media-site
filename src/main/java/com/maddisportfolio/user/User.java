@@ -17,6 +17,18 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "location")
+    private String location;
+
+    @Transient
+    private boolean hasBeenSentFriendRequestByLoggedInUser;
+
     public long getId(){
         return this.id;
     }
@@ -41,4 +53,34 @@ public class User {
         this.password = password;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName(){
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getLocation(){
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public boolean isHasBeenSentFriendRequestByLoggedInUser() {
+        return hasBeenSentFriendRequestByLoggedInUser;
+    }
+    public void setHasBeenSentFriendRequestByLoggedInUser(boolean hasBeenSentFriendRequestByLoggedInUser) {
+        this.hasBeenSentFriendRequestByLoggedInUser = hasBeenSentFriendRequestByLoggedInUser;
+    }
 }

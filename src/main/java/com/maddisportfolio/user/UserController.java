@@ -36,17 +36,16 @@ public class UserController {
         catch(EmailExistsException e){
             return "redirect:/users?exists";
         }
-            //todo when login html is created, redirect to it instead
-            return "create-user";
+            return "redirect:/login";
 
     }
 
     @RequestMapping(method = RequestMethod.GET, params = "query")
-    public String searchUsers (@RequestParam("query") String emailAddress, Model model){
-        List<User> searchList = userService.searchUsers(emailAddress);
-        model.addAttribute("users", searchList);
+    public String searchUsers (@RequestParam("query") String emailAddressToSearchFor, Model model){
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String loggedInUserEmailAddress = userDetails.getUsername();
+        List<User> searchList = userService.searchUsers(emailAddressToSearchFor, loggedInUserEmailAddress);
+        model.addAttribute("users", searchList);
         model.addAttribute("loggedInUserEmailAddress", loggedInUserEmailAddress);
         return "search-results";
     }
@@ -55,5 +54,29 @@ public class UserController {
     public String getSearch(){
         return "search-users";
     }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String getProfile(Model model){
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String loggedInUserEmailAddress = userDetails.getUsername();
+        User loggedInUser = userService.returnUser(loggedInUserEmailAddress);
+        model.addAttribute("user", loggedInUser);
+        return "profile-users";
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public String updateUserProfile(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String location){
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String loggedInUserEmailAddress = userDetails.getUsername();
+        userService.updateUserProfile(firstName, lastName, location, loggedInUserEmailAddress);
+        return "redirect:/users/profile";
+
+    }
+
+
+
+
+
+
 
 }
