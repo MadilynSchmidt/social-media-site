@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="'layouts/default'">
+
+<head>
+
+
+
+
+
+</head>
+
+<body>
+
+<div layout:fragment="content" >
+    <ul>
+        <li th:each="friendRequest : ${friendRequests}">
+            <p th:text="${friendRequest.getSender().getFirstName() + ' ' + friendRequest.getSender().getLastName()}">
+
+            </p>
+
+
+        </li>
+
+
+
+    </ul>
+
+</div>
+
+
+</body>
+</html>
+
+
+

@@ -5,6 +5,8 @@ import com.maddisportfolio.user.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FriendRequestSerivce {
     @Autowired
@@ -30,13 +32,17 @@ public class FriendRequestSerivce {
         friendRequestDao.save(friendRequest);
     }
 
+    public List<FriendRequest> getPendingFriendRequestsForUser(String loggedInUserEmailAddress){
+        User loggedInUser = userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress);
+        List<FriendRequest> friendRequests = friendRequestDao.findAllByRecipientAndFriendRequestStatus(loggedInUser, FriendRequestStatus.PENDING);
+        return friendRequests;
+    }
+
+
     private boolean usersAreSamePerson(User sender, User recipient){
         if(sender.getId() == recipient.getId()){
             return true;
         }
         return false;
     }
-
-
-
 }
