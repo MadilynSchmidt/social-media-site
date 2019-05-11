@@ -5,7 +5,6 @@
       layout:decorator="'layouts/default'" >
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-    <script th:src="@{/js/login.js}"></script>
     <meta charset="UTF-8">
     <title>Login</title>
 
@@ -14,7 +13,7 @@
 <body>
 
 <div id="login-container" layout:fragment="content" >
-    <img th:src="@{/images/logo.png}"/>
+    <img th:src="@{/images/transparentlogo.png}"/>
     <form id="login-form" th:action="@{/login}" method="post">
         <label for="email">Email:</label>
         <input type="text" id="email" name="username">

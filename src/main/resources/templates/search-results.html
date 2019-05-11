@@ -5,7 +5,6 @@
       layout:decorator="'layouts/default'" >
 
 <head>
-    <script th:src="@{/js/search-results.js}"></script>
     <meta charset="UTF-8">
     <title>Search results</title>
 
@@ -15,8 +14,8 @@
 
 
     <ul>
-        <li th:each="user: ${users}">
-            <p th:text="${user.getEmailAddress()}"></p>
+        <li th:each="user: ${users}" th:class="${loggedInUserEmailAddress == user.getEmailAddress() ? 'logged-in-user' : ''}">
+            <p th:text="${user.getEmailAddress()}" ></p>
             <form id="search-results-form" th:if="${loggedInUserEmailAddress != user.getEmailAddress()}" th:action="@{/friend-requests}" method="post">
                 <input type="hidden" name="recipientId" th:value="${user.getId()}">
                 <button class="btn-lg btn-block" th:disabled="${user.isHasBeenSentFriendRequestByLoggedInUser()}"  th:text='${user.isHasBeenSentFriendRequestByLoggedInUser() ? "Friend Request Sent" : "Send Friend Request" }' type="submit">

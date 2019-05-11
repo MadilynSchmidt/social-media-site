@@ -59,9 +59,9 @@ public class UserController {
     public String getProfile(Model model){
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String loggedInUserEmailAddress = userDetails.getUsername();
-        User loggedInUser = userService.returnUser(loggedInUserEmailAddress);
+        User loggedInUser = userService.getUser(loggedInUserEmailAddress);
         model.addAttribute("user", loggedInUser);
-        return "profile-users";
+        return "users-profile";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.POST)

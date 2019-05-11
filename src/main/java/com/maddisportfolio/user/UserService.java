@@ -58,7 +58,7 @@ public class UserService {
 
 
     public void updateUserProfile(String firstName, String lastName, String location, String loggedInEmailAddress){
-        User updatedUser = returnUser(loggedInEmailAddress);
+        User updatedUser = getUser(loggedInEmailAddress);
         updatedUser.setFirstName(firstName);
         updatedUser.setLastName(lastName);
         updatedUser.setLocation(location);

@@ -4,17 +4,20 @@
 #search-results-container{
            display: flex;
            justify-content: center;
-           align-items: flex-end;
-           flex-direction: column;
-           width: 0px;
            margin: auto;
            line-height: 2.2;
+
+           ul{
+            width: 50%;
+           }
 
 
     li{
         list-style-type: none;
             padding: 0;
-            display: -webkit-box;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
             margin: auto;
             margin-bottom: 0;
             height: 85px;
@@ -28,13 +31,13 @@
             justify-content: space-evenly;
             flex-direction: row;
             margin: auto;
-            margin-bottom: 0;
+            margin-left: 0;
             font-size: 20px;
         }
-    }
+
 
 #search-results-form{
-        width: auto%;
+        width: auto;
         display: flex;
         flex-direction: column;
 
@@ -49,17 +52,13 @@
        opacity: .5;
     }
 
-    input{
-        margin-bottom: 0px;
-        border-radius: 0px;
-        box-shadow: none;
-        border: 1px solid grey;
-    }
+
 
     label{
         margin-bottom: 0;
     }
 
+}
 }
 
 

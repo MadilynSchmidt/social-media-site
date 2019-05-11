@@ -1,0 +1,30 @@
+@import "styles/variable";
+
+#users-profile-container{
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       flex-direction: column;
+       margin: auto;
+
+#users-profile-form{
+       display: flex;
+       flex-direction: column;
+
+    button{
+        background-color: $purple;
+        color: white;
+        border: 1px solid grey;
+    }
+
+    input{
+        margin-bottom: .5rem;
+        border-radius: 5px;
+        box-shadow: none;
+        border: 1px solid grey;
+    }
+
+
+}
+}
+
