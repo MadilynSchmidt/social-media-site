@@ -1,0 +1,67 @@
+@import "styles/variable";
+
+
+#search-results-container{
+           display: flex;
+           justify-content: center;
+           margin: auto;
+           line-height: 2.2;
+
+           ul{
+            width: 50%;
+           }
+
+
+    li{
+        list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: auto;
+            margin-bottom: 0;
+            height: 85px;
+            font-size: 20px;
+    }
+
+    p{
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+            margin: auto;
+            margin-left: 0;
+            font-size: 20px;
+        }
+
+
+#search-results-form{
+        width: auto;
+        display: flex;
+        flex-direction: column;
+
+    button{
+        background-color: $purple;
+        color: white;
+        border: 1px solid grey;
+        margin-top: 0;
+    }
+
+    button:disabled{
+       opacity: .5;
+    }
+
+
+
+    label{
+        margin-bottom: 0;
+    }
+
+}
+}
+
+
+
+
+

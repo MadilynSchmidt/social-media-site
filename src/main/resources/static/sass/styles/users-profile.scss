@@ -1,15 +1,13 @@
 @import "styles/variable";
 
-#login-container{
+#users-profile-container{
        display: flex;
        justify-content: center;
        align-items: center;
        flex-direction: column;
-       width: 50%;
        margin: auto;
 
-#login-form{
-       width: 50%;
+#users-profile-form{
        display: flex;
        flex-direction: column;
 
@@ -26,10 +24,7 @@
         border: 1px solid grey;
     }
 
-    label{
-       margin-bottom: 0;
-    }
 
 }
-
 }
+

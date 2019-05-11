@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorator="'layouts/default'">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="'layouts/default'" >
 
 <head>
-    <title>Search Results</title>
+    <meta charset="UTF-8">
+    <title>Search results</title>
+
 </head>
 <body>
-<div layout:fragment="content">
+<div id="search-results-container" layout:fragment="content">
+
+
     <ul>
-        <li th:each="user: ${users}">
-            <p th:text="${user.getEmailAddress()}"></p>
-            <form th:if="${loggedInUserEmailAddress != user.getEmailAddress()}" th:action="@{/friend-requests}" method="post">
+        <li th:each="user: ${users}" th:class="${loggedInUserEmailAddress == user.getEmailAddress() ? 'logged-in-user' : ''}">
+            <p th:text="${user.getEmailAddress()}" ></p>
+            <form id="search-results-form" th:if="${loggedInUserEmailAddress != user.getEmailAddress()}" th:action="@{/friend-requests}" method="post">
                 <input type="hidden" name="recipientId" th:value="${user.getId()}">
-                <button type="submit">submit</button>
+                <button class="btn-lg btn-block" th:disabled="${user.isHasBeenSentFriendRequestByLoggedInUser()}"  th:text='${user.isHasBeenSentFriendRequestByLoggedInUser() ? "Friend Request Sent" : "Send Friend Request" }' type="submit">
+
+
+                </button>
+
             </form>
     </ul>
 </div>

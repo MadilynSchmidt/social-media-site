@@ -1,5 +1,7 @@
 package com.maddisportfolio.user;
 
+import com.maddisportfolio.friendrequest.FriendRequest;
+import com.maddisportfolio.friendrequest.FriendRequestDao;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +17,14 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private FriendRequestDao friendRequestDao;
+
+    public User getUser(String loggedInEmailAddress){
+        User userToReturn = userDao.findOneByEmailAddressIgnoreCase(loggedInEmailAddress);
+        return userToReturn;
+    }
 
     public void createUser(User user) throws InvalidEmailException, EmailExistsException{
 
@@ -35,12 +45,27 @@ public class UserService {
         }
     }
 
-    public List<User> searchUsers(String emailAddress){
-        List<User> searchList = userDao.findByEmailAddressIgnoreCaseContaining(emailAddress);
-        return searchList;
+    public List<User> searchUsers(String emailAddressToSearchFor, String loggedInUserEmailAddress){
+        List<User> searchResults = userDao.findByEmailAddressIgnoreCaseContaining(emailAddressToSearchFor);
+        User loggedInUser = userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress);
+        List<FriendRequest> correspondingFriendRequests = friendRequestDao.findAllBySenderAndRecipientIn(loggedInUser, searchResults);
+        for(FriendRequest friendRequest : correspondingFriendRequests){
+            User correspondingUser = searchResults.stream().filter(x -> x.getId() == friendRequest.getRecipient().getId()).findFirst().get();
+            correspondingUser.setHasBeenSentFriendRequestByLoggedInUser(true);
+        }
+        return searchResults;
+    }
 
+
+    public void updateUserProfile(String firstName, String lastName, String location, String loggedInEmailAddress){
+        User updatedUser = getUser(loggedInEmailAddress);
+        updatedUser.setFirstName(firstName);
+        updatedUser.setLastName(lastName);
+        updatedUser.setLocation(location);
+        userDao.save(updatedUser);
+        }
     }
 
 
 
-}
+
