@@ -1,29 +1,42 @@
 @import "styles/variable";
 
-#sidenav {
+html, body {
+  width: 100%;
   height: 100%;
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
+  margin: 0;
+}
+
+#sidebar, #content {
+  height: 100%;
+  overflow:auto;
+  float:left;
+
+}
+
+#sidebar {
   background-color: $purple;
-  overflow-x: hidden;
-  padding-top: 20px;
-  border: 1px solid grey;
+  width: 15%;
+
+}
+
+#content {
+  width: 85%;
 }
 
 a {
-    padding: 6px 8px 6px 16px;
+    padding: 6px 8px 6px 8px;
     text-decoration: none;
     font-size: 25px;
     color: $white;
     display: block;
+    text-align: center;
 }
 
 a:hover{
     color: $darkgrey;
     text-decoration: none;
 }
+
+
 
 

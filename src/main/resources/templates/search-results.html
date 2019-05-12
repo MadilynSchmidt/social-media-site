@@ -14,7 +14,7 @@
 
 
     <ul>
-        <li th:each="user: ${users}" th:class="${loggedInUserEmailAddress == user.getEmailAddress() ? 'logged-in-user' : ''}">
+        <li th:each="user : ${users}" th:class="${loggedInUserEmailAddress == user.getEmailAddress() ? 'logged-in-user' : ''}">
             <p th:text="${user.getEmailAddress()}" ></p>
             <form id="search-results-form" th:if="${loggedInUserEmailAddress != user.getEmailAddress()}" th:action="@{/friend-requests}" method="post">
                 <input type="hidden" name="recipientId" th:value="${user.getId()}">

@@ -13,6 +13,11 @@ public interface FriendRequestDao extends JpaRepository<FriendRequest, Long> {
 
   List<FriendRequest> findAllBySenderAndRecipientIn(User sender, List<User> recipients);
 
+  List<FriendRequest> findAllByRecipientAndFriendRequestStatus(User recipient, FriendRequestStatus friendRequestStatus);
+
+
+
+
 
 }
 
