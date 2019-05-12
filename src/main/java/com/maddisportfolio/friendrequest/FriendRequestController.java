@@ -32,9 +32,15 @@ public class FriendRequestController {
         String senderEmailAddress = userDetails.getUsername();
         friendRequestSerivce.createFriendRequest(senderEmailAddress, recipientId);
         return "redirect:/users/search";
-
     }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/accept")
+    public String acceptFriendRequest(@RequestParam long friendRequestId){
+        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String loggedInUserEmailAddress = userDetails.getUsername();
+        friendRequestSerivce.acceptFriendRequest(loggedInUserEmailAddress, friendRequestId);
+        return "redirect:/friend-requests";
+    }
 
 
 

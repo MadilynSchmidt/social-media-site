@@ -38,6 +38,16 @@ public class FriendRequestSerivce {
         return friendRequests;
     }
 
+    public void acceptFriendRequest(String loggedInUserEmailAddress, long friendRequestId){
+        User loggedInUser = userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress);
+        FriendRequest friendRequest = friendRequestDao.getOne(friendRequestId);
+        if(!usersAreSamePerson(loggedInUser, friendRequest.getRecipient())){
+            return;
+        }
+        friendRequest.setFriendRequestStatus(FriendRequestStatus.ACCEPTED);
+        friendRequestDao.save(friendRequest);
+    }
+
 
     private boolean usersAreSamePerson(User sender, User recipient){
         if(sender.getId() == recipient.getId()){

@@ -17,10 +17,11 @@
     <ul>
         <li th:each="friendRequest : ${friendRequests}">
             <p th:text="${friendRequest.getSender().getFirstName() + ' ' + friendRequest.getSender().getLastName()}">
-
             </p>
-
-
+            <form method="post" th:action="@{/friend-requests/accept}">
+             <input type="hidden" th:value="${friendRequest.getId()}" name="friendRequestId">
+                <button type="submit">Accept</button></form>
+            <form method="post" th:action="@{/friend-requests/decline}"><button type="submit">Decline</button></form>
         </li>
 
 
