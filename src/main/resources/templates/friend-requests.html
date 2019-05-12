@@ -21,7 +21,9 @@
             <form method="post" th:action="@{/friend-requests/accept}">
              <input type="hidden" th:value="${friendRequest.getId()}" name="friendRequestId">
                 <button type="submit">Accept</button></form>
-            <form method="post" th:action="@{/friend-requests/decline}"><button type="submit">Decline</button></form>
+            <form method="post" th:action="@{/friend-requests/decline}">
+                <input type="hidden" th:value="${friendRequest.getId()}" name="friendRequestId">
+                <button type="submit">Decline</button></form>
         </li>
 
 

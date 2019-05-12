@@ -42,6 +42,14 @@ public class FriendRequestController {
         return "redirect:/friend-requests";
     }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/decline")
+    public String declineFriendRequest(@RequestParam long friendRequestId){
+        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String loggedInUserEmailAddress = userDetails.getUsername();
+        friendRequestSerivce.declineFriendRequest(loggedInUserEmailAddress, friendRequestId);
+        return "redirect:/friend-requests";
+    }
+
 
 
 
