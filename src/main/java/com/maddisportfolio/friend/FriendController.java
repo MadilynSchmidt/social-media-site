@@ -1,4 +1,4 @@
-package com.maddisportfolio.friends;
+package com.maddisportfolio.friend;
 
 import com.maddisportfolio.friendrequest.FriendRequestSerivce;;
 import com.maddisportfolio.user.User;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/friends")
-public class FriendsController {
+@RequestMapping(value = "/friend")
+public class FriendController {
 
     @Autowired
     private FriendRequestSerivce friendRequestSerivce;
@@ -22,8 +22,8 @@ public class FriendsController {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String loggedInUserEmailAddress = userDetails.getUsername();
         List<User> friends = friendRequestSerivce.getFriends(loggedInUserEmailAddress);
-        model.addAttribute("friends", friends);
-        return "friends";
+        model.addAttribute("friend", friends);
+        return "friend";
 
 }
 
