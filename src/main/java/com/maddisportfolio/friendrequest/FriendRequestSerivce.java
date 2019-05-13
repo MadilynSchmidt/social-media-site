@@ -4,7 +4,7 @@ import com.maddisportfolio.user.User;
 import com.maddisportfolio.user.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -64,4 +64,21 @@ public class FriendRequestSerivce {
         }
         return false;
     }
+
+    public List<User> getFriends (String loggedInUserEmailAddress){
+        List<User> friends = new ArrayList<>();
+        User loggedInUser = userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress);
+        List<FriendRequest> receivedRequests = friendRequestDao.findAllByRecipientAndFriendRequestStatus(loggedInUser, FriendRequestStatus.ACCEPTED);
+        for(FriendRequest friendRequest : receivedRequests){
+            friends.add(friendRequest.getSender());
+        }
+        List<FriendRequest> sentRequests = friendRequestDao.findAllBySenderAndFriendRequestStatus(loggedInUser, FriendRequestStatus.ACCEPTED);
+        for(FriendRequest friendRequest : sentRequests){
+            friends.add(friendRequest.getRecipient());
+        }
+        return friends;
+    }
+
+
+
 }
