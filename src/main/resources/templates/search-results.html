@@ -11,18 +11,20 @@
 </head>
 <body>
 <div id="search-results-container" layout:fragment="content">
-
+    <form id="search-results-research-form" th:action="@{/users}" method="get">
+        <label for="email">Email:</label>
+        <input name="query" type="text" id="email">
+        <button class="btn-lg btn-block mt-3"  type="submit">Search</button>
+    </form>
 
     <ul>
-        <form id="search-results-research-form" th:action="@{/users}" method="get">
-            <label for="email">Email:</label>
-            <input name="query" type="text" id="email">
-            <button class="btn-lg btn-block mt-3"  type="submit">Search</button></form>
+
         <li th:each="user : ${users}" th:class="${loggedInUserEmailAddress == user.getEmailAddress() ? 'logged-in-user' : ''}">
             <p th:text="${user.getEmailAddress()}" ></p>
             <form id="search-results-form" th:if="${loggedInUserEmailAddress != user.getEmailAddress()}" th:action="@{/friend-requests}" method="post">
                 <input type="hidden" name="recipientId" th:value="${user.getId()}">
-                <button class="btn-lg btn-block" th:disabled="${user.isHasBeenSentFriendRequestByLoggedInUser()}"  th:text='${user.isHasBeenSentFriendRequestByLoggedInUser() ? "Friend Request Sent" : "Send Friend Request" }' type="submit"></button></form>
+                <button class="btn-lg btn-block" th:disabled="${user.isHasBeenSentFriendRequestByLoggedInUser()}"  th:text='${user.isHasBeenSentFriendRequestByLoggedInUser() ? "Friend Request Sent" : "Send Friend Request" }' type="submit"></button>
+            </form>
         </li>
 
     </ul>
@@ -31,6 +33,9 @@
 
 
 </div>
+
+
+
 
 </body>
 </html>
