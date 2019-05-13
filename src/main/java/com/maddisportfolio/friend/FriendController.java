@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/friend")
+@RequestMapping(value = "/friends")
 public class FriendController {
 
     @Autowired
@@ -22,8 +22,8 @@ public class FriendController {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String loggedInUserEmailAddress = userDetails.getUsername();
         List<User> friends = friendRequestSerivce.getFriends(loggedInUserEmailAddress);
-        model.addAttribute("friend", friends);
-        return "friend";
+        model.addAttribute("friends", friends);
+        return "friends";
 
 }
 
