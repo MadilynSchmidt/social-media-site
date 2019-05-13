@@ -35,6 +35,38 @@
             font-size: 20px;
         }
 
+#search-results-research-form{
+ width: 50%;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+
+        button{
+            background-color: $purple;
+            color: white;
+            border: 1px solid grey;
+        }
+
+        input{
+            margin-bottom: .5rem;
+            margin: auto;
+
+            border-radius: 5px;
+            box-shadow: none;
+            border: 1px solid grey;
+        }
+
+        label{
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+    }
+
+
+
+}
+
 
 #search-results-form{
         width: auto;
