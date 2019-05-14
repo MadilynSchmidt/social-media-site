@@ -2,6 +2,7 @@ package com.maddisportfolio.user;
 
 import com.maddisportfolio.friendrequest.FriendRequest;
 import com.maddisportfolio.friendrequest.FriendRequestDao;
+import com.maddisportfolio.friendrequest.FriendRequestSerivce;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,15 +22,18 @@ public class UserService {
     @Autowired
     private FriendRequestDao friendRequestDao;
 
-    public User getUser(String loggedInEmailAddress){
+    @Autowired
+    private FriendRequestSerivce friendRequestSerivce;
+
+    public User getUser(String loggedInEmailAddress) {
         User userToReturn = userDao.findOneByEmailAddressIgnoreCase(loggedInEmailAddress);
         return userToReturn;
     }
 
-    public void createUser(User user) throws InvalidEmailException, EmailExistsException{
+    public void createUser(User user) throws InvalidEmailException, EmailExistsException {
 
         User existingUser = userDao.findOneByEmailAddressIgnoreCase(user.getEmailAddress());
-        if(existingUser != null){
+        if (existingUser != null) {
             throw new EmailExistsException();
         }
 
@@ -39,17 +43,16 @@ public class UserService {
             user.setPassword(encodedPassword);
             user.setEmailAddress(user.getEmailAddress().toLowerCase());
             userDao.save(user);
-        }
-        else{
+        } else {
             throw new InvalidEmailException();
         }
     }
 
-    public List<User> searchUsers(String emailAddressToSearchFor, String loggedInUserEmailAddress){
+    public List<User> searchUsers(String emailAddressToSearchFor, String loggedInUserEmailAddress) {
         List<User> searchResults = userDao.findByEmailAddressIgnoreCaseContaining(emailAddressToSearchFor);
         User loggedInUser = userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress);
         List<FriendRequest> correspondingFriendRequests = friendRequestDao.findAllBySenderAndRecipientIn(loggedInUser, searchResults);
-        for(FriendRequest friendRequest : correspondingFriendRequests){
+        for (FriendRequest friendRequest : correspondingFriendRequests) {
             User correspondingUser = searchResults.stream().filter(x -> x.getId() == friendRequest.getRecipient().getId()).findFirst().get();
             correspondingUser.setHasBeenSentFriendRequestByLoggedInUser(true);
         }
@@ -57,15 +60,25 @@ public class UserService {
     }
 
 
-    public void updateUserProfile(String firstName, String lastName, String location, String loggedInEmailAddress){
+    public void updateUserProfile(String firstName, String lastName, String location, String loggedInEmailAddress) {
         User updatedUser = getUser(loggedInEmailAddress);
         updatedUser.setFirstName(firstName);
         updatedUser.setLastName(lastName);
         updatedUser.setLocation(location);
         userDao.save(updatedUser);
-        }
     }
 
 
+    public User findFriend(long userId, String loggedInUserEmailAddress) {
+        List<User> friends = friendRequestSerivce.getFriends(loggedInUserEmailAddress);
+        for(User user : friends){
+            if(user.getId() == userId){
+                return user;
+            }
+        }
+        throw new RuntimeException();
+
+    }
 
 
+}

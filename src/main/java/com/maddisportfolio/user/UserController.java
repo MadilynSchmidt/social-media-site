@@ -5,10 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -70,6 +67,16 @@ public class UserController {
         String loggedInUserEmailAddress = userDetails.getUsername();
         userService.updateUserProfile(firstName, lastName, location, loggedInUserEmailAddress);
         return "redirect:/users/profile";
+
+    }
+
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    public String getFriendProfile(@PathVariable Long userId, Model model){
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String loggedInUserEmailAddress = userDetails.getUsername();
+        User friend = userService.findFriend(userId, loggedInUserEmailAddress);
+        model.addAttribute("friend", friend);
+        return "friend-profile";
 
     }
 

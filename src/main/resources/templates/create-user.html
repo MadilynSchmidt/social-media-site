@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorator="'layouts/default'">
+      layout:decorator="'layouts/login-create-layout'">
 
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
@@ -15,7 +15,7 @@
 <body>
 
 <div id="create-user-form-container" layout:fragment="content" >
-    <img th:src="@{/images/logo.png}"/>
+    <img th:src="@{/images/transparentlogo.png}"/>
     <div th:if="${param.invalid}">Please enter a valid email address.</div>
     <div th:if="${param.exists}">There is already an account associated with the email address you entered.</div>
     <form id="create-user-form" th:action="@{/users}" method="post" th:object="${user}">
