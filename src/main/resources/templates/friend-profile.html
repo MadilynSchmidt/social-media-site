@@ -11,16 +11,8 @@
 </head>
 <body>
 <div layout:fragment="content">
-  <ul>
-      <li th:each="friend : ${friends}">
-            <a th:text="${friend.getFirstName() + ' ' + friend.getLastName()}"
-            th:href="@{users/{userId}(userId=${friend.getId()})}"></a>
-
-      </li>
-
-
-  </ul>
-
+    <p th:text="${friend.getFirstName() + ' ' + friend.getLastName()}"></p>
+    <p th:text="${friend.getLocation()}"></p>
 
 
 </div>
