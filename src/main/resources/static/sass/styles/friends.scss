@@ -1,0 +1,59 @@
+@import "styles/variable";
+
+#friends-container{
+           display: flex;
+           justify-content: center;
+           margin: auto;
+           line-height: 2.2;
+
+           ul{
+               width: 50%;
+               margin-top: 0;
+               margin-bottom: 0;
+               list-style: none;
+               padding: 0;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               flex-direction: column;
+
+            }
+           }
+
+           a{
+           color: $black;
+           font-size: 25px;
+           }
+
+
+
+
+    li{
+        list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: auto;
+            margin-bottom: 0;
+            height: 85px;
+
+
+    }
+
+a:hover{
+    color: $darkgrey;
+    text-decoration: none;
+
+
+
+
+
+}
+
+
+
+
+
+
+

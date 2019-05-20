@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<div layout:fragment="content">
+<div id="friends-container" layout:fragment="content">
   <ul>
       <li th:each="friend : ${friends}">
             <a th:text="${friend.getFirstName() + ' ' + friend.getLastName()}"

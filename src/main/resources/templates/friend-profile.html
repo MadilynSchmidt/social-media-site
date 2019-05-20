@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<div layout:fragment="content">
+<div id="friend-profile-container" layout:fragment="content">
     <p th:text="${friend.getFirstName() + ' ' + friend.getLastName()}"></p>
     <p th:text="${friend.getLocation()}"></p>
 

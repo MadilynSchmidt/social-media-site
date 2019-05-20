@@ -1,0 +1,74 @@
+@import "styles/variable";
+
+#friend-requests-container{
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     margin: auto;
+     width: 60%;
+     font-size: 25px;
+
+     p{
+         margin-top: 0;
+         margin-bottom: 1rem;
+         width: 250px;
+         text-align: center;
+         justify-content: center;
+         margin: 0px;
+
+     }
+
+#friend-requests-form{
+   display: flex;
+   flex-direction: column;
+
+        button{
+            background-color: $purple;
+            color: white;
+            border: 1px solid grey;
+        }
+
+        input{
+            margin-bottom: .5rem;
+            margin: auto;
+            border-radius: 5px;
+            box-shadow: none;
+            border: 1px solid grey;
+        }
+
+      }
+
+#friend-requests-deny-form{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 150px;
+
+        button{
+            background-color: $purple;
+            color: white;
+            border: 1px solid grey;
+
+        }
+
+        input{
+            margin-bottom: .5rem;
+            margin: auto;
+
+            border-radius: 5px;
+            box-shadow: none;
+            border: 1px solid grey;
+        }
+
+        label{
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+}
+
+}
+
+
+
+

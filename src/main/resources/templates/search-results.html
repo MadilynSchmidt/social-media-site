@@ -10,12 +10,12 @@
 
 </head>
 <body>
-<div id="search-results-container" layout:fragment="content">
-    <form id="search-results-research-form" th:action="@{/users}" method="get">
-        <label for="email">Email:</label>
-        <input name="query" type="text" id="email">
-        <button class="btn-lg btn-block mt-3"  type="submit">Search</button>
-    </form>
+<div layout:fragment="content">
+
+
+
+<div id="search-results-container" >
+
 
     <ul>
 
@@ -33,9 +33,13 @@
 
 
 </div>
+<form id="search-results-research-form" th:action="@{/users}" method="get">
+    <label for="email">Email:</label>
+    <input name="query" type="text" id="email">
+    <button class="btn"  type="submit">Search</button>
+</form>
 
 
-
-
+</div>
 </body>
 </html>
