@@ -18,52 +18,32 @@
 
      }
 
-#friend-requests-form{
-   display: flex;
-   flex-direction: column;
-
-        button{
-            background-color: $purple;
-            color: white;
-            border: 1px solid grey;
-        }
-
-        input{
-            margin-bottom: .5rem;
-            margin: auto;
-            border-radius: 5px;
-            box-shadow: none;
-            border: 1px solid grey;
-        }
-
-      }
 
 #friend-requests-deny-form{
-      display: flex;
       align-items: center;
-      flex-direction: column;
       width: 150px;
-
-        button{
-            background-color: $purple;
-            color: white;
-            border: 1px solid grey;
-
-        }
-
-        input{
-            margin-bottom: .5rem;
-            margin: auto;
-
-            border-radius: 5px;
-            box-shadow: none;
-            border: 1px solid grey;
-        }
 
         label{
             margin-bottom: 0;
             text-align: center;
         }
+
+}
+#friend-requests-deny-form, #friend-requests-form{
+               display: flex;
+               flex-direction: column;
+            button{
+                background-color: $purple;
+                color: white;
+                border: 1px solid grey;
+            }
+            input{
+                margin-bottom: .5rem;
+                margin: auto;
+                border-radius: 5px;
+                box-shadow: none;
+                border: 1px solid grey;
+            }
 
 }
 
