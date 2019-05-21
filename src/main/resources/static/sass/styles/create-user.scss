@@ -8,6 +8,14 @@
       width: 50%;
       margin: auto;
 
+       a:hover{
+                  color: $darkgrey;
+                 }
+
+                 a{
+                 color: $black;
+                 }
+
 #create-user-form{
       width: 50%;
       display: flex;
