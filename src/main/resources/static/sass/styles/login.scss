@@ -8,6 +8,14 @@
        width: 50%;
        margin: auto;
 
+        a:hover{
+            color: $darkgrey;
+           }
+
+           a{
+           color: $black;
+           }
+
 #login-form{
        width: 50%;
        display: flex;
@@ -29,6 +37,8 @@
     label{
        margin-bottom: 0;
     }
+
+
 
 }
 
