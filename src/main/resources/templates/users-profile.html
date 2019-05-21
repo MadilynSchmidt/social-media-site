@@ -10,11 +10,11 @@
 <body>
 <div id="users-profile-container" layout:fragment="content">
     <form id="users-profile-form" th:action="@{/users/profile}" method="post">
-        <label for="first-name">First Name</label>
+        <label for="first-name">First Name:</label>
         <input type="text" id="first-name" name="firstName" th:value="${user.getFirstName()}">
-        <label for="last-name">Last Name</label>
+        <label for="last-name">Last Name:</label>
         <input type="text" id="last-name" name="lastName" th:value="${user.getLastName()}">
-        <label for="location">Location</label>
+        <label for="location">Location:</label>
         <input type="text" id="location" name="location" th:value="${user.getLocation()}">
         <button class="btn-lg btn-block mt-3"  type="submit">Save</button>
     </form>
