@@ -21,11 +21,17 @@
     <form id="create-user-form" th:action="@{/users}" method="post" th:object="${user}">
         <label for="email">Email:</label>
         <input type="text" id="email" th:field="*{emailAddress}">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" required th:field="*{firstName}">
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" required th:field="*{lastName}">
+        <label for="location">Location:</label>
+        <input type="text" id="location" required th:field="*{location}">
         <label for="password">Password:</label>
         <input type="password" id="password" th:field="*{password}">
         <label for="confirm_password">Confirm Password:</label>
         <input type="password" id="confirm_password" name="confirm_password">
-        <button class="btn-lg btn-block mt-3"  type="submit">Submit</button>
+        <button id="submit-button" class="btn-lg btn-block mt-3"  type="submit">Submit</button>
 
     </form>
     <a class="my-2" th:href="@{/login}">Already have an account? Login here</a>

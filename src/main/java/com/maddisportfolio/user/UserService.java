@@ -42,8 +42,13 @@ public class UserService {
             String encodedPassword = passwordEncoder.encode(user.getPassword());
             user.setPassword(encodedPassword);
             user.setEmailAddress(user.getEmailAddress().toLowerCase());
+            user.setLocation(user.getLocation().trim());
+            if(user.getLocation().length() < 1){
+                    throw new RuntimeException();
+            }
             userDao.save(user);
-        } else {
+        }
+        else {
             throw new InvalidEmailException();
         }
     }
