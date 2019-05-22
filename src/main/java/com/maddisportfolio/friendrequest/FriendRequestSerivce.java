@@ -25,6 +25,10 @@ public class FriendRequestSerivce {
         if(existingFriendRequest != null){
             return;
         }
+        FriendRequest alreadyPendingRequest = friendRequestDao.findOneBySenderAndRecipient(recipient, sender);
+        if(alreadyPendingRequest != null){
+            return;
+        }
         FriendRequest friendRequest = new FriendRequest();
         friendRequest.setSender(sender);
         friendRequest.setRecipient(recipient);

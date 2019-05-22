@@ -3,12 +3,13 @@ package com.maddisportfolio.user;
 import com.maddisportfolio.friendrequest.FriendRequest;
 import com.maddisportfolio.friendrequest.FriendRequestDao;
 import com.maddisportfolio.friendrequest.FriendRequestSerivce;
+import com.maddisportfolio.friendrequest.FriendRequestStatus;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -62,6 +63,14 @@ public class UserService {
         for (FriendRequest friendRequest : correspondingFriendRequests) {
             User correspondingUser = searchResults.stream().filter(x -> x.getId() == friendRequest.getRecipient().getId()).findFirst().get();
             correspondingUser.setHasBeenSentFriendRequestByLoggedInUser(true);
+        }
+        List<FriendRequest> pendingRequestsToLoggedInUser = friendRequestDao.findAllByRecipientAndFriendRequestStatus(loggedInUser, FriendRequestStatus.PENDING);
+        for(FriendRequest friendRequest : pendingRequestsToLoggedInUser){
+            Optional<User> correspondingSender = searchResults.stream().filter(x -> x.getId() == friendRequest.getSender().getId()).findFirst();
+            if(correspondingSender.isPresent()){
+                correspondingSender.get().setHasReceivedRequestFromSearchedUser(true);
+            }
+
         }
         return searchResults;
     }

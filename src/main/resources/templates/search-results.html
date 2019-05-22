@@ -23,7 +23,7 @@
             <p th:text="${user.getEmailAddress()}" ></p>
             <form id="search-results-form" th:if="${loggedInUserEmailAddress != user.getEmailAddress()}" th:action="@{/friend-requests}" method="post">
                 <input type="hidden" name="recipientId" th:value="${user.getId()}">
-                <button class="btn-lg btn-block" th:disabled="${user.isHasBeenSentFriendRequestByLoggedInUser()}"  th:text='${user.isHasBeenSentFriendRequestByLoggedInUser() ? "Friend Request Sent" : "Send Friend Request" }' type="submit"></button>
+                <button class="btn-lg btn-block" th:disabled="${user.isHasBeenSentFriendRequestByLoggedInUser() || user.isHasReceivedRequestFromSearchedUser()}"  th:text='${user.isHasReceivedRequestFromSearchedUser() ? "Pending Friend Request" : user.isHasBeenSentFriendRequestByLoggedInUser() ? "Friend Request Sent" : "Send Friend Request" }' type="submit"></button>
             </form>
         </li>
 
