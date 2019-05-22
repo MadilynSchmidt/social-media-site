@@ -16,6 +16,7 @@ html, body {
 #sidebar {
   background-color: $purple;
   width: 15%;
+  position: sticky;
 
   a:hover{
       color: $darkgrey;
