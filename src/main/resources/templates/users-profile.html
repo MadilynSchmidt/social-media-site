@@ -17,14 +17,16 @@
         <input type="text" id="last-name" required name="lastName" th:value="${user.getLastName()}">
         <label for="location">Location:</label>
         <input type="text" id="location" required name="location" th:value="${user.getLocation()}">
-        <button id="save-button" class="btn-lg btn-block mt-3"  type="submit">Save</button>
+        <button id="save-button" class="btn-lg btn-block"  type="submit">Save</button>
     </form>
     <form id="post-form" th:action="@{/post}" method="post">
         <label for="post">What's on your mind?</label>
-        <input type="text" id="post" required name="post">
+        <textarea type="text" id="post" required name="post"></textarea>
         <button id="save-post-button" class="btn-lg btn-block"  type="submit">Share</button>
+        <p>My posts</p>
         <ul>
             <li th:each="post : ${posts}" th:text="${post.getContent()}">
+
 
             </li>
         </ul>
