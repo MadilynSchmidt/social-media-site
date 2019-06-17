@@ -29,9 +29,9 @@ public class PostService {
         postDao.save(postToCreate);
     }
 
-    public List<Post> findAllPostByUser(String loggedInUserEmailAddress){
-        User loggedInUser = userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress);
-        List<Post> posts = postDao.findAllByUser(loggedInUser);
+    public List<Post> findAllPostByUser(String userEmailAddress){
+        User user = userDao.findOneByEmailAddressIgnoreCase(userEmailAddress);
+        List<Post> posts = postDao.findAllByUser(user);
         return posts;
     }
 

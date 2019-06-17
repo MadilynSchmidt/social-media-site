@@ -10,11 +10,15 @@
 
 </head>
 <body>
-<div id="friend-profile-container" layout:fragment="content">
-    <p th:text="${friend.getFirstName() + ' ' + friend.getLastName()}"></p>
-    <p th:text="${friend.getLocation()}"></p>
+<div layout:fragment="content">
+    <div id="friend-profile-container">
+        <p th:text="${friend.getFirstName() + ' ' + friend.getLastName()}"></p>
+        <p th:text="${friend.getLocation()}"></p>
+        <h2 th:text="|${friend.getFirstName()}'s Posts|"></h2>
+        <p class="posts" th:each="post : ${posts}" th:text="${post.getContent()}"></p>
 
 
+    </div>
 </div>
 
 </body>

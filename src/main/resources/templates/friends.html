@@ -10,7 +10,8 @@
 
 </head>
 <body>
-<div id="friends-container" layout:fragment="content">
+<div layout:fragment="content">
+<div id="friends-container">
   <ul>
       <li th:each="friend : ${friends}">
             <a th:text="${friend.getFirstName() + ' ' + friend.getLastName()}"
@@ -24,6 +25,6 @@
 
 
 </div>
-
+</div>
 </body>
 </html>

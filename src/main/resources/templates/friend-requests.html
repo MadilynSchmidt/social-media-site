@@ -12,8 +12,8 @@
 </head>
 
 <body>
-
-<div id="friend-requests-container" layout:fragment="content" >
+<div layout:fragment="content">
+<div id="friend-requests-container">
     <ul>
         <li th:each="friendRequest : ${friendRequests}">
             <p th:text="${friendRequest.getSender().getFirstName() + ' ' + friendRequest.getSender().getLastName()}">
@@ -32,7 +32,7 @@
 
 </div>
 
-
+</div>
 </body>
 </html>
 

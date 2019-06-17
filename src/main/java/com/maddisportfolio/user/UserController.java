@@ -83,6 +83,8 @@ public class UserController {
         String loggedInUserEmailAddress = userDetails.getUsername();
         User friend = userService.findFriend(userId, loggedInUserEmailAddress);
         model.addAttribute("friend", friend);
+        List<Post> posts = postService.findAllPostByUser(friend.getEmailAddress());
+        model.addAttribute("posts", posts);
         return "friend-profile";
 
     }

@@ -9,7 +9,8 @@
     <title>Users Profile</title>
 </head>
 <body>
-<div id="users-profile-container" layout:fragment="content">
+<div layout:fragment="content">
+<div id="users-profile-container">
     <form id="users-profile-form" th:action="@{/users/profile}" method="post">
         <label for="first-name">First Name:</label>
         <input type="text" id="first-name" required name="firstName" th:value="${user.getFirstName()}">
@@ -23,7 +24,7 @@
         <p>What's on your mind?</p>
         <textarea type="text" id="post" required name="post"></textarea>
         <button id="save-post-button" class="btn-lg btn-block"  type="submit">Share</button>
-        <p1>My posts</p1>
+        <h2>My posts</h2>
         <ul>
             <li th:each="post : ${posts}" th:text="${post.getContent()}">
 
@@ -32,6 +33,7 @@
         </ul>
     </form>
 
+</div>
 </div>
 
 </body>
