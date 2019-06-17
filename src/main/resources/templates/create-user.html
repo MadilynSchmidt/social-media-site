@@ -27,6 +27,10 @@
         <input type="text" id="last_name" required th:field="*{lastName}">
         <label for="location">Location:</label>
         <input type="text" id="location" required th:field="*{location}">
+        <label for="timezone-dropdown">Select Timezone:</label>
+        <select id="timezone-dropdown">
+            <option th:each="timeZone : ${timeZones}" th:text="${timeZone}" th:value="${timeZone}"></option>
+        </select>
         <label for="password">Password:</label>
         <input type="password" id="password" th:field="*{password}">
         <label for="confirm_password">Confirm Password:</label>

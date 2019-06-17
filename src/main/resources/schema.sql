@@ -4,7 +4,8 @@ CREATE TABLE users(
     password VARCHAR(200) NOT NULL,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
-    location TEXT NOT NULL
+    location TEXT NOT NULL,
+    timezone TEXT NOT NULL
 );
 
 CREATE TABLE friend_request(
@@ -15,7 +16,8 @@ CREATE TABLE friend_request(
     );
 
 CREATE TABLE post(
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL REFERENCES users(id),
-    content TEXT NOT NULL
-);
+      id BIGSERIAL PRIMARY KEY,
+      user_id BIGINT NOT NULL REFERENCES users(id),
+      content TEXT NOT NULL,
+      creation_date TIMESTAMP WITH TIME ZONE NOT NULL
+  );

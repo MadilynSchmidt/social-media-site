@@ -76,11 +76,12 @@ public class UserService {
     }
 
 
-    public void updateUserProfile(String firstName, String lastName, String location, String loggedInEmailAddress) {
+    public void updateUserProfile(String firstName, String lastName, String location, String loggedInEmailAddress, String timezone) {
         User updatedUser = getUser(loggedInEmailAddress);
         updatedUser.setFirstName(firstName);
         updatedUser.setLastName(lastName);
         updatedUser.setLocation(location);
+        updatedUser.setTimezone(timezone);
         userDao.save(updatedUser);
     }
 

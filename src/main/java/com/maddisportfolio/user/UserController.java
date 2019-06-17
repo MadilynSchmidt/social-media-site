@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/users")
@@ -21,9 +24,12 @@ public class UserController {
     @Autowired
     private PostService postService;
 
+
     @RequestMapping(method = RequestMethod.GET)
     public String getCreateUser(Model model){
         model.addAttribute("user", new User());
+        List<String> zoneList = new ArrayList<>(ZoneId.getAvailableZoneIds().stream().sorted().collect(Collectors.toList()));
+        model.addAttribute("timeZones", zoneList);
         return "create-user";
     }
 
@@ -64,15 +70,17 @@ public class UserController {
         User loggedInUser = userService.getUser(loggedInUserEmailAddress);
         model.addAttribute("user", loggedInUser);
         List<Post> posts = postService.findAllPostByUser(loggedInUserEmailAddress);
+        List<String> zoneList = new ArrayList<>(ZoneId.getAvailableZoneIds().stream().sorted().collect(Collectors.toList()));
+        model.addAttribute("timeZones", zoneList);
         model.addAttribute("posts", posts);
         return "users-profile";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
-    public String updateUserProfile(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String location){
+    public String updateUserProfile(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String location, @RequestParam String timezone){
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String loggedInUserEmailAddress = userDetails.getUsername();
-        userService.updateUserProfile(firstName, lastName, location, loggedInUserEmailAddress);
+        userService.updateUserProfile(firstName, lastName, location, loggedInUserEmailAddress, timezone);
         return "redirect:/users/profile";
 
     }

@@ -26,6 +26,9 @@ public class User {
     @Column(name = "location")
     private String location;
 
+    @Column(name = "timezone")
+    private String timezone;
+
     @Transient
     private boolean hasBeenSentFriendRequestByLoggedInUser;
 
@@ -78,6 +81,14 @@ public class User {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
     }
 
     public boolean isHasBeenSentFriendRequestByLoggedInUser() {

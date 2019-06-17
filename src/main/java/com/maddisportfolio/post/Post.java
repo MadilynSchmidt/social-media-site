@@ -3,6 +3,8 @@ package com.maddisportfolio.post;
 import com.maddisportfolio.user.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+
 
 @Table(name = "post")
 @Entity
@@ -15,6 +17,9 @@ public class Post {
 
     @Column(name = "content")
     private String content;
+
+    @Column(name = "creation_date")
+    private LocalDateTime localDateTime;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
@@ -41,6 +46,14 @@ public class Post {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 }
 

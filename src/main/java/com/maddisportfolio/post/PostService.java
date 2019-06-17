@@ -6,6 +6,7 @@ import com.maddisportfolio.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,6 +27,8 @@ public class PostService {
         User loggedInUser = userService.getUser(loggedInEmailAddress);
         postToCreate.setUser(loggedInUser);
         postToCreate.setContent(postText);
+        LocalDateTime now = LocalDateTime.now();
+        postToCreate.setLocalDateTime(now);
         postDao.save(postToCreate);
     }
 
