@@ -19,7 +19,7 @@
         <input type="text" id="location" required name="location" th:value="${user.getLocation()}">
         <button id="save-button" class="btn-lg btn-block"  type="submit">Save</button>
     </form>
-    <form id="post-form" th:action="@{/post}" method="post">
+    <form id="post-form" th:action="@{/posts}" method="post">
         <p>What's on your mind?</p>
         <textarea type="text" id="post" required name="post"></textarea>
         <button id="save-post-button" class="btn-lg btn-block"  type="submit">Share</button>
