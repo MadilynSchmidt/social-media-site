@@ -29,7 +29,7 @@
         <button id="save-post-button" class="btn-lg btn-block"  type="submit">Share</button>
         <h2>My posts</h2>
         <ul>
-            <li th:each="post : ${posts}" th:text="${post.getContent() + ' ' + post.getLocalDateTime()}">
+            <li th:each="post : ${posts}" th:text="${post.getContent() + ' ' + post.getDisplayZonedDateTime()}">
 
 
             </li>

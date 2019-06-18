@@ -69,7 +69,7 @@ public class UserController {
         String loggedInUserEmailAddress = userDetails.getUsername();
         User loggedInUser = userService.getUser(loggedInUserEmailAddress);
         model.addAttribute("user", loggedInUser);
-        List<Post> posts = postService.findAllPostByUser(loggedInUserEmailAddress);
+        List<Post> posts = postService.findAllPostByUser(loggedInUserEmailAddress, loggedInUserEmailAddress);
         List<String> zoneList = new ArrayList<>(ZoneId.getAvailableZoneIds().stream().sorted().collect(Collectors.toList()));
         model.addAttribute("timeZones", zoneList);
         model.addAttribute("posts", posts);
@@ -91,7 +91,7 @@ public class UserController {
         String loggedInUserEmailAddress = userDetails.getUsername();
         User friend = userService.findFriend(userId, loggedInUserEmailAddress);
         model.addAttribute("friend", friend);
-        List<Post> posts = postService.findAllPostByUser(friend.getEmailAddress());
+        List<Post> posts = postService.findAllPostByUser(friend.getEmailAddress(), loggedInUserEmailAddress);
         model.addAttribute("posts", posts);
         return "friend-profile";
 

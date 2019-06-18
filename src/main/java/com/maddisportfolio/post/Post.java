@@ -3,7 +3,9 @@ package com.maddisportfolio.post;
 import com.maddisportfolio.user.User;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 
 @Table(name = "post")
@@ -19,7 +21,10 @@ public class Post {
     private String content;
 
     @Column(name = "creation_date")
-    private LocalDateTime localDateTime;
+    private Timestamp timestamp;
+
+    @Transient
+    private ZonedDateTime displayZonedDateTime;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
@@ -48,12 +53,20 @@ public class Post {
         this.user = user;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public ZonedDateTime getDisplayZonedDateTime() {
+        return displayZonedDateTime;
+    }
+
+    public void setDisplayZonedDateTime(ZonedDateTime displayZonedDateTime) {
+        this.displayZonedDateTime = displayZonedDateTime;
     }
 }
 
