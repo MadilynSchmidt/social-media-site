@@ -13,3 +13,9 @@ CREATE TABLE friend_request(
     recipient_id BIGINT NOT NULL REFERENCES users(id),
     status VARCHAR(8) NOT NULL
     );
+
+CREATE TABLE post(
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL REFERENCES users(id),
+    content TEXT NOT NULL
+);

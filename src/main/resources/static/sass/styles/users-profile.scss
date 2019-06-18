@@ -8,8 +8,8 @@
        margin: auto;
        width: 50%;
 
-#users-profile-form{
-        width: 50%;
+    #users-profile-form{
+       width: 50%;
        display: flex;
        flex-direction: column;
 
@@ -17,6 +17,7 @@
         background-color: $purple;
         color: white;
         border: 1px solid grey;
+        margin-bottom: 25px;
     }
 
     input{
@@ -32,5 +33,59 @@
 
 
 }
+
+#post-form{
+       width: 50%;
+       display: flex;
+       flex-direction: column;
+}
+
+textarea{
+cols: 20;
+rows: 10;
+margin-bottom: .5rem;
+      border-radius: 5px;
+      box-shadow: none;
+      border: 1px solid grey;
+      height: auto;
+      resize: none;
+      overflow: hidden;
+
+}
+
+
+
+    button{
+            background-color: $purple;
+            color: white;
+            border: 1px solid grey;
+        }
+
+        p{
+        margin: 0px;
+        }
+
+        h2{
+        font-size: 30px;
+        text-align: center;
+         margin-top: 1rem;
+         border-bottom-style: solid;
+               border-bottom-width: thin;
+
+        }
+
+          li{
+                 list-style-type: none;
+                     padding: 0;
+                     display: flex;
+                     justify-content: flex-start;
+                     align-items: center;
+                     margin: auto;
+                     margin-bottom: 0;
+                     height: 85px;
+
+
+             }
+
 }
 

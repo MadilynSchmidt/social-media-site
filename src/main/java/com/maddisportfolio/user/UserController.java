@@ -1,5 +1,7 @@
 package com.maddisportfolio.user;
 
+import com.maddisportfolio.post.Post;
+import com.maddisportfolio.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +17,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PostService postService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String getCreateUser(Model model){
@@ -58,6 +63,8 @@ public class UserController {
         String loggedInUserEmailAddress = userDetails.getUsername();
         User loggedInUser = userService.getUser(loggedInUserEmailAddress);
         model.addAttribute("user", loggedInUser);
+        List<Post> posts = postService.findAllPostByUser(loggedInUserEmailAddress);
+        model.addAttribute("posts", posts);
         return "users-profile";
     }
 
