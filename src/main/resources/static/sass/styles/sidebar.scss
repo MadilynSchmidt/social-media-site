@@ -6,7 +6,7 @@ html, body {
   margin: 0;
 }
 
-#sidebar, #content {
+#sidebar{
   height: 100%;
   overflow:auto;
   float:left;
@@ -38,11 +38,6 @@ html, body {
   }
 
 
-}
-
-
-#content {
-  width: 85%;
 }
 
 

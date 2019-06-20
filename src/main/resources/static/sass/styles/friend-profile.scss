@@ -1,6 +1,8 @@
 @import "styles/variable";
 
 #friend-profile-container{
+    width: 50%;
+    margin: auto;
 
 p {
     display: flex;
@@ -12,6 +14,21 @@ p {
     font-size: 25px;
 }
 
+ h2{
+        font-size: 30px;
+        text-align: center;
+         margin-top: 1rem;
+         border-bottom-style: solid;
+               border-bottom-width: thin;
+               }
+    .posts{
+        margin: 0;
+        width: 100%;
+    }
+.posts:nth-child(even){
+/* to do add variable and/or change*/
+    background: #d9d9d9;
+}
 
 
 }

@@ -10,8 +10,8 @@
 
 </head>
 <body>
-
-<div id="search-users-container" layout:fragment="content">
+<div layout:fragment="content">
+<div id="search-users-container">
     <form id="search-users-form" th:action="@{/users}" method="get">
         <label for="email">Email:</label>
         <input name="query" type="text" id="email">
@@ -19,6 +19,6 @@
     </form>
 
 </div>
-
+</div>
 </body>
 </html>
