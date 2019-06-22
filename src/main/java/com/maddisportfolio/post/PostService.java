@@ -56,7 +56,20 @@ public class PostService {
             throw new RuntimeException();
         }
         postDao.delete(post);
+    }
+
+    public void updatePost(String loggedInUserEmailAddress, long postId, Post post){
+        User user = userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress);
+        Post postToUpdate = postDao.getOne(postId);
+        if(user.getId() != postToUpdate.getUser().getId()){
+            throw new RuntimeException();
+        }
+        postToUpdate.setContent(post.getContent());
+        postDao.save(postToUpdate);
+        }
 
     }
 
-}
+
+
+

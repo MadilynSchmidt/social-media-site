@@ -1,6 +1,7 @@
 package com.maddisportfolio.post;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -30,5 +31,12 @@ public class PostController {
         postService.deletePost(loggedInUserEmailAddress, postId);
     }
 
+    @RequestMapping(value ="/{postId}", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void updatePost(@PathVariable long postId, @RequestBody Post post){
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String loggedInUserEmailAddress = userDetails.getUsername();
+        postService.updatePost(loggedInUserEmailAddress, postId, post);
+    }
 
 }
