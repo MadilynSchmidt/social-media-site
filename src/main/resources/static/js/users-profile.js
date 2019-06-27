@@ -49,13 +49,12 @@
     });
 
     $(".back-button").click(function(){
-        //var postDisplay = $(this).parent(".post-display");
-        $(".content").show();
-        $(".edit-button").show();
-        $(".edit-post-input").addClass("hidden");
-        $(".post-save-button").addClass("hidden");
-        $(".back-button").addClass("hidden");
-        //$(postDisplay).children(".edit-post-input").val($(".edit-post-input").attr("data-original-value"));
+        var postDisplay = $(this).parent(".post-display");
+        $(postDisplay).children(".content").show();
+        $(postDisplay).children(".edit-button").show();
+        $(postDisplay).children(".edit-post-input").addClass("hidden");
+        $(postDisplay).children(".post-save-button").addClass("hidden");
+        $(postDisplay).children(".back-button").addClass("hidden");
         $(".edit-post-input").each(function(){
             $(this).val($(this).attr("data-original-value"));
 
@@ -89,7 +88,7 @@
                   saveButton.addClass("hidden");
                   postDisplay.children(".back-button").addClass("hidden");
                   var timeStamp = postDisplay.children(".content").attr("data-post-timestamp");
-                  postDisplay.children(".content").text(content + timestamp);
+                  postDisplay.children(".content").text(content + " " +timeStamp);
                   postDisplay.children(".edit-post-input").val(content);
                   postDisplay.children(".edit-post-input").attr("data-original-value", content);
             })

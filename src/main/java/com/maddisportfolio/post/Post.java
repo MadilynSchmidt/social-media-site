@@ -26,6 +26,9 @@ public class Post {
     @Transient
     private ZonedDateTime displayZonedDateTime;
 
+    @Transient
+    private String formattedDate;
+
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private User user;
@@ -67,6 +70,14 @@ public class Post {
 
     public void setDisplayZonedDateTime(ZonedDateTime displayZonedDateTime) {
         this.displayZonedDateTime = displayZonedDateTime;
+    }
+
+    public String getFormattedDate() {
+        return formattedDate;
+    }
+
+    public void setFormattedDate(String formattedDate) {
+        this.formattedDate = formattedDate;
     }
 }
 

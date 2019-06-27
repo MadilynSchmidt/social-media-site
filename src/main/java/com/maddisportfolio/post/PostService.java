@@ -5,11 +5,11 @@ import com.maddisportfolio.user.UserDao;
 import com.maddisportfolio.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -41,9 +41,12 @@ public class PostService {
         User loggedInUser = userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress);
         List<Post> posts = postDao.findAllByUser(user);
         ZoneId loggedInTimezone = ZoneId.of(loggedInUser.getTimezone());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
         for(Post post : posts){
           Instant instant = post.getTimestamp().toInstant();
           post.setDisplayZonedDateTime(ZonedDateTime.ofInstant(instant, loggedInTimezone));
+          String formattedDate = post.getDisplayZonedDateTime().format(formatter);
+          post.setFormattedDate(formattedDate);
         }
 
         return posts;
