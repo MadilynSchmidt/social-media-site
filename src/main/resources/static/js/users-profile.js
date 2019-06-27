@@ -26,7 +26,7 @@
             })
             .done(function(){
                 //.show()
-                $(".delete-button").parent().hide();
+                $(".post-display[data-post-id=" + postId + "]").remove();
             })
             .fail(function(){
             })
@@ -38,58 +38,67 @@
     });
 
     $(".edit-button").click(function(){
-        $(".edit-post-input").removeClass("hidden");
-        $(".edit-button").hide();
-        $(".post-save-button").removeClass("hidden");
-        $(".back-button").removeClass("hidden");
-        $(".edit-button").hide();
-        $(".content").hide();
+        var postDisplay = $(this).parent(".post-display");
+        $(postDisplay).children(".edit-post-input").removeClass("hidden");
+        $(postDisplay).children(".edit-button").hide();
+        $(postDisplay).children(".post-save-button").removeClass("hidden");
+        $(postDisplay).children(".back-button").removeClass("hidden");
+        $(postDisplay).children(".edit-button").hide();
+        $(postDisplay).children(".content").hide();
 
     });
 
     $(".back-button").click(function(){
+        //var postDisplay = $(this).parent(".post-display");
         $(".content").show();
         $(".edit-button").show();
         $(".edit-post-input").addClass("hidden");
         $(".post-save-button").addClass("hidden");
         $(".back-button").addClass("hidden");
-        $(".edit-post-input").val($(".edit-post-input").attr("data-original-value"));
+        //$(postDisplay).children(".edit-post-input").val($(".edit-post-input").attr("data-original-value"));
+        $(".edit-post-input").each(function(){
+            $(this).val($(this).attr("data-original-value"));
 
+        });
     });
 
     $(".post-save-button").click(function(){
-        if(!$(".post-save-button").hasClass("disabled")){
-            $(".post-save-button").addClass("disabled");
-            var postId = $(".post-save-button").parent().attr("data-post-id");
-            var content = $(".edit-post-input").val();
+        var saveButton = $(this);
+        var postDisplay = $(saveButton.parent());
+        if(!saveButton.hasClass("disabled")){
+            $(saveButton).addClass("disabled");
+            var postId = $(postDisplay).attr("data-post-id");
+            var content = $(postDisplay).children(".edit-post-input").val();
             var payload = {
                 content: content,
                 postId: postId
             };
 
             $.ajax({
-            url: "/posts/" + postId,
-            type: "PATCH",
-            data: JSON.stringify(payload),
-            contentType: "application/json"
+                url: "/posts/" + postId,
+                type: "PATCH",
+                data: JSON.stringify(payload),
+                contentType: "application/json"
             })
 
             .done(function(){
-                  $(".content").show();
-                  $(".edit-button").show();
-                  $(".edit-post-input").addClass("hidden");
-                  $(".post-save-button").addClass("hidden");
-                  $(".back-button").addClass("hidden");
-                  $(".content").text(content);
-                  $(".edit-post-input").val(content);
-                  $(".edit-post-input").attr("data-original-value", content);
+                //specific on postId
+                  postDisplay.children(".content").show();
+                  postDisplay.children(".edit-button").show();
+                  postDisplay.children(".edit-post-input").addClass("hidden");
+                  saveButton.addClass("hidden");
+                  postDisplay.children(".back-button").addClass("hidden");
+                  var timeStamp = postDisplay.children(".content").attr("data-post-timestamp");
+                  postDisplay.children(".content").text(content + timestamp);
+                  postDisplay.children(".edit-post-input").val(content);
+                  postDisplay.children(".edit-post-input").attr("data-original-value", content);
             })
             .fail(function(){
 
             })
 
             .always(function(){
-                $(".post-save-button").removeClass("disabled");
+                saveButton.removeClass("disabled");
             });
 
 

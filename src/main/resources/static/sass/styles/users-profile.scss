@@ -1,23 +1,30 @@
 @import "styles/variable";
 
+#content {
+    float: right;
+    width: 85%;
+    height: 50%;
+}
+
 #users-profile-container{
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       flex-direction: column;
-       margin: auto;
-       width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 50%;
 
     #users-profile-form{
-       width: 50%;
-       display: flex;
-       flex-direction: column;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        margin-right: 50%;
+        align-self: flex-start;
 
     button{
         background-color: $purple;
         color: white;
         border: 1px solid grey;
-        margin-bottom: 25px;
+        margin-top: 15px;
     }
 
     input{
@@ -28,64 +35,53 @@
     }
 
     label{
-    margin-bottom: 0;
+        margin-bottom: 0;
+    }
+}
+
+    #post-form{
+        flex-direction: column;
+        align-self: flex-start;
     }
 
+        textarea{
+            margin-bottom: .5rem;
+            border-radius: 5px;
+            box-shadow: none;
+            border: 1px solid grey;
+            resize: none;
+            overflow: hidden;
+            width: 300px;
+            height: 80px;
+        }
 
-}
-
-#post-form{
-       width: 50%;
-       display: flex;
-       flex-direction: column;
-}
-
-textarea{
-cols: 20;
-rows: 10;
-margin-bottom: .5rem;
-      border-radius: 5px;
-      box-shadow: none;
-      border: 1px solid grey;
-      height: auto;
-      resize: none;
-      overflow: hidden;
-
-}
-
-
-
-    button{
+        button{
             background-color: $purple;
             color: white;
             border: 1px solid grey;
         }
 
-        p{
-        margin: 0px;
-        }
-
         h2{
-        font-size: 30px;
-        text-align: center;
-         margin-top: 1rem;
-         border-bottom-style: solid;
-               border-bottom-width: thin;
-
+            font-size: 30px;
+            text-align: center;
+            margin-top: 1rem;
+            border-bottom-style: solid;
+            border-bottom-width: thin;
+            justify-content: center;
+            display: flex;
         }
 
-          li{
-                 list-style-type: none;
-                     padding: 0;
-                     display: flex;
-                     justify-content: flex-start;
-                     align-items: center;
-                     margin: auto;
-                     margin-bottom: 0;
-                     height: 85px;
-
-
-             }
-
+        li{
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: auto;
+            margin-bottom: 0;
+            height: 85px;
+        }
 }
+
+
 

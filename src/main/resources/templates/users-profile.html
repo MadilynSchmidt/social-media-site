@@ -27,16 +27,16 @@
         <p>What's on your mind?</p>
         <textarea type="text" id="post" required name="post"></textarea>
         <button id="save-post-button" class="btn-lg btn-block"  type="submit">Share</button>
+        <div class="post-display" th:each="post : ${posts}" th:attr="data-post-id=${post.getId()}">
+            <p class="content" th:attr="data-post-timestamp=${post.getDisplayZonedDateTime()}" th:text="${post.getContent() + ' ' + post.getDisplayZonedDateTime()}"></p>
+<!--            todo make textarea, figure out .val() in jquery-->
+            <input type="text" th:value="${post.getContent()}" class="hidden edit-post-input" th:attr="data-original-value=${post.getContent()}">
+            <i class="far fa-edit edit-button"></i>
+            <i class="far fa-save hidden post-save-button"></i>
+            <i class="fas fa-reply hidden back-button"></i>
+            <i class="fas fa-times-circle delete-button"></i>
+        </div>
     </form>
-
-    <div th:each="post : ${posts}" th:attr="data-post-id=${post.getId()}">
-        <p class="content" th:text="${post.getContent() + ' ' + post.getDisplayZonedDateTime()}"></p>
-        <input type="text" th:value="${post.getContent()}" class="hidden edit-post-input" th:attr="data-original-value=${post.getContent()}">
-        <i class="far fa-edit edit-button"></i>
-        <i class="far fa-save hidden post-save-button"></i>
-        <i class="fas fa-reply hidden back-button"></i>
-        <i class="fas fa-times-circle delete-button"></i>
-    </div>
 </div>
 </div>
 
