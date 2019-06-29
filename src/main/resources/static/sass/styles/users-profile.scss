@@ -61,6 +61,8 @@
             border: 1px solid grey;
         }
 
+
+
         h2{
             font-size: 30px;
             text-align: center;
@@ -71,15 +73,25 @@
             display: flex;
         }
 
-        li{
-            list-style-type: none;
+        .post-display{
             padding: 0;
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-around;
             align-items: center;
             margin: auto;
             margin-bottom: 0;
-            height: 85px;
+
+            i{
+            cursor: pointer;
+
+            }
+
+            .dropright .dropdown-toggle:empty::after{
+                display: none !important;
+
+
+            }
+
         }
 }
 

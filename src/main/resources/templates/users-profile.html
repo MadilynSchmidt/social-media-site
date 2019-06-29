@@ -30,10 +30,15 @@
         <div class="post-display" th:each="post : ${posts}" th:attr="data-post-id=${post.getId()}">
             <p class="content" th:attr="data-post-timestamp=${post.getFormattedDate()}" th:text="${post.getContent() + ' ' + post.getFormattedDate()}"></p>
             <textarea th:text="${post.getContent()}" class="hidden edit-post-input" th:attr="data-original-value=${post.getContent()}"></textarea>
-            <i class="far fa-edit edit-button"></i>
-            <i class="far fa-save hidden post-save-button"></i>
+            <div class="btn-group dropright">
+                <i class="dropdown-toggle fas fa-ellipsis-v" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item edit-button" href="#">Edit</a>
+                    <a class="dropdown-item delete-button" href="#">Delete</a>
+                </div>
+            </div>
             <i class="fas fa-reply hidden back-button"></i>
-            <i class="fas fa-times-circle delete-button"></i>
+            <i class="far fa-save hidden post-save-button"></i>
         </div>
     </form>
 </div>
