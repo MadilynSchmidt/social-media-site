@@ -64,6 +64,7 @@
         $(postDisplay).find(".back-button").removeClass("hidden");
         $(postDisplay).find(".edit-button").hide();
         $(postDisplay).find(".content").hide();
+        $(postDisplay).find(".timestamp").hide();
         $(postDisplay).find(".close-dot-button").addClass("hidden");
 
     });
@@ -71,6 +72,7 @@
     $(".back-button").click(function(){
         var postDisplay = $(this).parents(".post-display");
         $(postDisplay).find(".content").show();
+        $(postDisplay).find(".timestamp").show();
         $(postDisplay).find(".edit-button").show();
         $(postDisplay).find(".edit-post-input").addClass("hidden");
         $(postDisplay).find(".post-save-button").addClass("hidden");
@@ -84,7 +86,7 @@
 
     $(".post-save-button").click(function(){
         var saveButton = $(this);
-        var postDisplay = $(saveButton.parent());
+        var postDisplay = $(saveButton.parents(".post-display"));
         if(!saveButton.hasClass("disabled")){
             $(saveButton).addClass("disabled");
             var postId = $(postDisplay).attr("data-post-id");
@@ -104,13 +106,16 @@
             .done(function(){
                 //specific on postId
                   postDisplay.find(".content").show();
+                  postDisplay.find(".timestamp").show();
+                  var editTimeStamp = postDisplay.find(".timestamp").text();
+                  postDisplay.find(".timestamp").text(editTimeStamp + " Edited");
                   postDisplay.find(".edit-button").show();
                   postDisplay.find(".edit-post-input").addClass("hidden");
                   saveButton.addClass("hidden");
                   $(postDisplay).find(".close-dot-button").removeClass("hidden");
                   postDisplay.find(".back-button").addClass("hidden");
                   var timeStamp = postDisplay.find(".content").attr("data-post-timestamp");
-                  postDisplay.find(".content").text(content + " " +timeStamp);
+                  postDisplay.find(".content").text(content);
                   postDisplay.find(".edit-post-input").val(content);
                   postDisplay.find(".edit-post-input").attr("data-original-value", content);
             })
