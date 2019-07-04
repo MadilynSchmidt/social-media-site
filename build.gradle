@@ -56,6 +56,8 @@ dependencies {
     testCompile("junit:junit")
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.3.0")
-    
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.23.0'
+
 
 }
