@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
-
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
