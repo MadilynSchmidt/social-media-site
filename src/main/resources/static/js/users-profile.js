@@ -15,8 +15,8 @@
     });
 
     $(".delete-button").click(function(){
-        if(!$(".delete-button").hasClass("disabled")){
-            $(".delete-button").addClass("disabled");
+        if(!$(this).hasClass("disabled")){
+            $(this).addClass("disabled");
             var postId = $(".delete-button").parents(".post-display").attr("data-post-id");
             $.ajax({
             url: "/posts/" + postId,
@@ -78,16 +78,17 @@
         $(postDisplay).find(".post-save-button").addClass("hidden");
         $(postDisplay).find(".back-button").addClass("hidden");
         $(postDisplay).find(".close-dot-button").removeClass("hidden");
-        $(".edit-post-input").each(function(){
-            $(this).val($(this).attr("data-original-value"));
+        var textArea =  $(postDisplay).find(".edit-post-input");
+        $(textArea).val($(textArea).attr("data-original-value"));
+        $("#fail-message").addClass("hidden");
 
-        });
     });
 
     $(".post-save-button").click(function(){
         var saveButton = $(this);
         var postDisplay = $(saveButton.parents(".post-display"));
         if(!saveButton.hasClass("disabled")){
+            $("#fail-message").addClass("hidden");
             $(saveButton).addClass("disabled");
             var postId = $(postDisplay).attr("data-post-id");
             var content = $(postDisplay).find(".edit-post-input").val();
@@ -120,6 +121,7 @@
                   postDisplay.find(".edit-post-input").attr("data-original-value", content);
             })
             .fail(function(){
+                $("#fail-message").removeClass("hidden");
 
             })
 

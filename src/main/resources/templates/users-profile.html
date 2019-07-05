@@ -10,6 +10,7 @@
 </head>
 <body>
 <div layout:fragment="content">
+    <div id="fail-message" class="hidden alert alert-danger">Something went wrong, please try again.</div>
 <div id="users-profile-container">
     <form id="users-profile-form" th:action="@{/users/profile}" method="post">
         <label for="first-name">First Name:</label>
