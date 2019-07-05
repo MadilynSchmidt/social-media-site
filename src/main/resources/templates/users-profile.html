@@ -10,6 +10,7 @@
 </head>
 <body>
 <div layout:fragment="content">
+    <div id="fail-message" class="hidden alert alert-danger">Something went wrong, please try again.</div>
 <div id="users-profile-container">
     <form id="users-profile-form" th:action="@{/users/profile}" method="post">
         <label for="first-name">First Name:</label>
@@ -25,15 +26,25 @@
     </form>
     <form id="post-form" th:action="@{/posts}" method="post">
         <p>What's on your mind?</p>
-        <textarea type="text" id="post" required name="post"></textarea>
-        <button id="save-post-button" class="btn-lg btn-block"  type="submit">Share</button>
+        <textarea id="post" required name="post"></textarea>
+        <button id="save-post-button" class="btn-lg btn-block mb-3"  type="submit">Share</button>
+        <div class="post-display" th:each="post : ${posts}" th:attr="data-post-id=${post.getId()}">
+            <p class="content" th:attr="data-post-timestamp=${post.getFormattedDate()}" th:text="${post.getContent()}"></p>
+            <textarea th:text="${post.getContent()}" class="hidden edit-post-input" th:attr="data-original-value=${post.getContent()}"></textarea>
+            <div class="btn-group dropright grid-button">
+                <i class="dropdown-toggle fas fa-ellipsis-v" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item edit-button" href="#">Edit</a>
+                    <a class="dropdown-item delete-button" href="#">Delete</a>
+                </div>
+            </div>
+            <p th:text="${post.getFormattedDate()}" class="timestamp"></p>
+            <div>
+                <i class="far fa-save hidden post-save-button"></i>
+                <i class="fas fa-reply hidden back-button"></i>
+            </div>
+        </div>
     </form>
-
-    <div th:each="post : ${posts}" th:attr="data-post-id=${post.getId()}">
-        [[${post.getContent() + " " + post.getDisplayZonedDateTime()}]]
-        <i class="fas fa-times-circle delete-button"></i>
-
-    </div>
 </div>
 </div>
 
