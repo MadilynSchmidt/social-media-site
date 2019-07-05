@@ -46,9 +46,17 @@ public class PostService {
           post.setDisplayZonedDateTime(ZonedDateTime.ofInstant(instant, loggedInTimezone));
         }
 
-
         return posts;
     }
 
+    public void deletePost(String loggedInUserEmailAddress, long postId){
+        User user = userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress);
+        Post post = postDao.getOne(postId);
+        if(user.getId() != post.getUser().getId()){
+            throw new RuntimeException();
+        }
+        postDao.delete(post);
+
+    }
 
 }
