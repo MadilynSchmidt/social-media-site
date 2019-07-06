@@ -68,7 +68,8 @@ public class Post {
         return displayZonedDateTime;
     }
 
-    public void setDisplayZonedDateTime(ZonedDateTime displayZonedDateTime) {
+    public void
+    setDisplayZonedDateTime(ZonedDateTime displayZonedDateTime) {
         this.displayZonedDateTime = displayZonedDateTime;
     }
 
