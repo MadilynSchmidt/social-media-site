@@ -48,11 +48,11 @@ public class UserController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET, params = "query")
-    public String searchUsers (@RequestParam("query") String emailAddressToSearchFor, Model model){
+    @RequestMapping(method = RequestMethod.GET, params = {"firstName", "lastName"})
+    public String searchUsers (@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, Model model){
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String loggedInUserEmailAddress = userDetails.getUsername();
-        List<User> searchList = userService.searchUsers(emailAddressToSearchFor, loggedInUserEmailAddress);
+        List<User> searchList = userService.searchUsers(firstName, lastName, loggedInUserEmailAddress);
         model.addAttribute("users", searchList);
         model.addAttribute("loggedInUserEmailAddress", loggedInUserEmailAddress);
         return "search-results";

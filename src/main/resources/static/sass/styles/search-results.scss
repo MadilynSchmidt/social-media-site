@@ -2,59 +2,54 @@
 
 
 #search-results-research-form{
-        float: right;
-        top: 0;
-         display: inline-block;
-         margin-top: 4px;
+    float: right;
+    top: 0;
+    display: inline-block;
+    margin-top: 4px;
 
-
-        button{
-            background-color: $purple;
-            color: white;
-            border: 1px solid grey;
-            width: auto;
-        }
-
-        input{
-            margin-bottom: .5rem;
-            margin: auto;
-
-            border-radius: 5px;
-            box-shadow: none;
-            border: 1px solid grey;
-        }
-
-        label{
-            margin-bottom: 0;
-            text-align: center;
-        }
-
+    button{
+        background-color: $purple;
+        color: white;
+        border: 1px solid grey;
+        width: auto;
     }
 
+    input{
+        margin-bottom: .5rem;
+        margin: auto;
+        border-radius: 5px;
+        box-shadow: none;
+        border: 1px solid grey;
+    }
+
+    label{
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+}
+
 #search-results-container{
-             margin: auto;
-             display: inline-block;
-             width: 65%;
-             padding-left: 25%;
-             justify-content: center;
-             line-height: 2.2;
-
-
-
+    margin: auto;
+    display: inline-block;
+    width: 65%;
+    padding-left: 25%;
+    justify-content: center;
+    line-height: 2.2;
 
     li{
         list-style-type: none;
-            padding: 0;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            margin: auto;
-            margin-bottom: 0;
-            height: 85px;
-            font-size: 20px;
+        padding: 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: auto;
+        margin-bottom: 0;
+        height: 85px;
+        font-size: 20px;
     }
 
-    p{
+        p{
             list-style-type: none;
             padding: 0;
             display: flex;
@@ -64,18 +59,12 @@
             margin-left: 0;
             font-size: 20px;
         }
-
-
-
-
-
 }
 
-
 #search-results-form{
-        width: auto;
-        display: flex;
-        flex-direction: column;
+    width: auto;
+    display: flex;
+    flex-direction: column;
 
     button{
         background-color: $purple;
@@ -87,8 +76,6 @@
     button:disabled{
        opacity: .5;
     }
-
-
 
     label{
         margin-bottom: 0;

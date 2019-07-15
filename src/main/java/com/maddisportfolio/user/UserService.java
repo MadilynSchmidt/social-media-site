@@ -56,8 +56,20 @@ public class UserService {
         }
     }
 
-    public List<User> searchUsers(String emailAddressToSearchFor, String loggedInUserEmailAddress) {
-        List<User> searchResults = userDao.findByEmailAddressIgnoreCaseContaining(emailAddressToSearchFor);
+    public List<User> searchUsers(String firstName, String lastName, String loggedInUserEmailAddress) {
+        List<User> searchResults;
+        if(firstName != null && !firstName.equals("") && lastName != null && !lastName.equals("")){
+            searchResults = userDao.findByFirstNameIgnoreCaseContainingAndLastNameIgnoreCaseContaining(firstName, lastName);
+        }
+        else if(firstName != null && !firstName.equals("")){
+            searchResults = userDao.findByFirstNameIgnoreCaseContaining(firstName);
+        }
+        else if(lastName != null && !lastName.equals("")){
+            searchResults = userDao.findByLastNameIgnoreCaseContaining(lastName);
+        }
+        else{
+            throw new RuntimeException();
+        }
         User loggedInUser = userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress);
         List<FriendRequest> correspondingFriendRequests = friendRequestDao.findAllBySenderAndRecipientIn(loggedInUser, searchResults);
         for (FriendRequest friendRequest : correspondingFriendRequests) {

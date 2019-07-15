@@ -1,44 +1,44 @@
 @import "styles/variable";
 
 #create-user-form-container{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 50%;
-      margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
 
-       a:hover{
-                  color: $darkgrey;
-                 }
+    a:hover{
+        color: $darkgrey;
+     }
 
-                 a{
-                 color: $black;
-                 }
-
-#create-user-form{
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-
-    button{
-        background-color: $purple;
-        color: $white;
-        border: 1px solid grey;
+    a{
+        color: $black;
     }
 
-    input{
-        margin-bottom: .5rem;
-        border-radius: 5px;
-        box-shadow: none;
-        border: 1px solid grey;
-    }
+    #create-user-form{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
 
-    label{
-        margin-bottom: 0;
-    }
+        button{
+            background-color: $purple;
+            color: $white;
+            border: 1px solid grey;
+        }
 
-}
+        input{
+            margin-bottom: .5rem;
+            border-radius: 5px;
+            box-shadow: none;
+            border: 1px solid grey;
+        }
+
+        label{
+            margin-bottom: 0;
+        }
+
+    }
 
 }
 

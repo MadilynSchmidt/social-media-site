@@ -20,24 +20,24 @@
         margin-right: 50%;
         align-self: flex-start;
 
-    button{
-        background-color: $purple;
-        color: white;
-        border: 1px solid grey;
-        margin-top: 15px;
-    }
+        button{
+            background-color: $purple;
+            color: white;
+            border: 1px solid grey;
+            margin-top: 15px;
+        }
 
-    input{
-        margin-bottom: .5rem;
-        border-radius: 5px;
-        box-shadow: none;
-        border: 1px solid grey;
-    }
+        input{
+            margin-bottom: .5rem;
+            border-radius: 5px;
+            box-shadow: none;
+            border: 1px solid grey;
+        }
 
-    label{
-        margin-bottom: 0;
+        label{
+            margin-bottom: 0;
+        }
     }
-}
 
     #post-form{
         flex-direction: column;
@@ -60,8 +60,6 @@
             border: 1px solid grey;
         }
 
-
-
         h2{
             font-size: 30px;
             text-align: center;
@@ -81,22 +79,20 @@
             margin: auto;
             margin-bottom: 0;
 
-            i{
-            cursor: pointer;
+                i{
+                cursor: pointer;
+                }
 
-            }
+                .dropright .dropdown-toggle:empty::after{
+                    display: none !important;
+                }
 
-            .dropright .dropdown-toggle:empty::after{
-                display: none !important;
+                .grid-button{
+                    display: flex;
+                    margin-bottom: auto;
+                    justify-content: flex-end;
 
-            }
-
-            .grid-button{
-                display: flex;
-                margin-bottom: auto;
-                justify-content: flex-end;
-
-            }
+                }
 
         }
 }
