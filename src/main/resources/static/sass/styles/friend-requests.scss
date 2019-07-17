@@ -1,78 +1,76 @@
 @import "styles/variable";
 
 #friend-requests-container{
-     display: flex;
-     align-items: center;
-     flex-direction: column;
-     margin: auto;
-     width: 60%;
-     font-size: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    width: 60%;
+    font-size: 25px;
 
-                          ul{
-                                width: 50%;
-                                margin-top: 0;
-                                margin-bottom: 0;
-                                list-style: none;
-                                padding: 0;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                flex-direction: column;
+    ul{
+        width: 50%;
+        margin-top: 0;
+        margin-bottom: 0;
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 
-                             }
-
-                     li{
-                         list-style-type: none;
-                             padding: 0;
-                             display: flex;
-                             justify-content: flex-start;
-                             align-items: center;
-                             margin: auto;
-                             margin-bottom: 0;
-                             height: 85px;
-
-
-                     }
-
-     p{
-         margin-top: 0;
-         margin-bottom: 1rem;
-         width: 250px;
-         text-align: center;
-         justify-content: center;
-         margin: 0px;
-
-     }
-
-
-#friend-requests-deny-form{
-      align-items: center;
-      width: 150px;
-
-        label{
+        li{
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: auto;
             margin-bottom: 0;
-            text-align: center;
+            height: 85px;
         }
 
-}
-#friend-requests-deny-form, #friend-requests-form{
-               display: flex;
-               flex-direction: column;
-            button{
-                background-color: $purple;
-                color: white;
-                border: 1px solid grey;
-            }
-            input{
-                margin-bottom: .5rem;
-                margin: auto;
-                border-radius: 5px;
-                box-shadow: none;
-                border: 1px solid grey;
+            p{
+                margin-top: 0;
+                margin-bottom: 1rem;
+                width: 250px;
+                text-align: center;
+                justify-content: center;
+                margin: 0px;
             }
 
 
-}
+            #friend-requests-deny-form{
+                align-items: center;
+                 width: 150px;
+
+                label{
+                    margin-bottom: 0;
+                    text-align: center;
+                }
+
+            }
+
+            #friend-requests-deny-form, #friend-requests-form{
+                display: flex;
+                flex-direction: column;
+
+                button{
+                    background-color: $purple;
+                    color: white;
+                    border: 1px solid grey;
+                }
+
+                input{
+                    margin-bottom: .5rem;
+                    margin: auto;
+                    border-radius: 5px;
+                    box-shadow: none;
+                    border: 1px solid grey;
+                }
+
+            }
 
 }
 

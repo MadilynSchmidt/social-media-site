@@ -4,31 +4,33 @@
     width: 50%;
     margin: auto;
 
-p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: auto;
-    width: 50%;
-    font-size: 25px;
-}
+    p{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: auto;
+        width: 50%;
+        font-size: 25px;
+    }
 
- h2{
+    h2{
         font-size: 30px;
         text-align: center;
-         margin-top: 1rem;
-         border-bottom-style: solid;
-               border-bottom-width: thin;
-               }
+        margin-top: 1rem;
+        border-bottom-style: solid;
+        border-bottom-width: thin;
+    }
+
     .posts{
         margin: 0;
         width: 100%;
     }
-.posts:nth-child(even){
-/* to do add variable and/or change*/
-    background: #d9d9d9;
-}
+
+    .posts:nth-child(even){
+        /* to do add variable and/or change*/
+        background: #d9d9d9;
+    }
 
 
 }

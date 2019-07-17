@@ -8,6 +8,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,8 +57,20 @@ public class UserService {
         }
     }
 
-    public List<User> searchUsers(String emailAddressToSearchFor, String loggedInUserEmailAddress) {
-        List<User> searchResults = userDao.findByEmailAddressIgnoreCaseContaining(emailAddressToSearchFor);
+    public List<User> searchUsers(String firstName, String lastName, String loggedInUserEmailAddress) {
+        List<User> searchResults;
+        if(firstName != null && !firstName.equals("") && lastName != null && !lastName.equals("")){
+            searchResults = userDao.findByFirstNameIgnoreCaseContainingAndLastNameIgnoreCaseContaining(firstName, lastName);
+        }
+        else if(firstName != null && !firstName.equals("")){
+            searchResults = userDao.findByFirstNameIgnoreCaseContaining(firstName);
+        }
+        else if(lastName != null && !lastName.equals("")){
+            searchResults = userDao.findByLastNameIgnoreCaseContaining(lastName);
+        }
+        else{
+            searchResults = new ArrayList<>();
+        }
         User loggedInUser = userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress);
         List<FriendRequest> correspondingFriendRequests = friendRequestDao.findAllBySenderAndRecipientIn(loggedInUser, searchResults);
         for (FriendRequest friendRequest : correspondingFriendRequests) {

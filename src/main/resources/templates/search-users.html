@@ -13,8 +13,9 @@
 <div layout:fragment="content">
 <div id="search-users-container">
     <form id="search-users-form" th:action="@{/users}" method="get">
-        <label for="email">Email:</label>
-        <input name="query" type="text" id="email">
+        <h1>Search by first and/or last name</h1>
+        <input name="firstName" type="text" id="firstName" placeholder="First name" >
+        <input name="lastName" type="text" id="lastName" placeholder="Last name">
         <button class="btn-lg btn-block mt-3"  type="submit">Search</button>
     </form>
 
