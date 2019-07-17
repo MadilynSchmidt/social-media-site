@@ -33,11 +33,12 @@
 
 
 </div>
-<form id="search-results-research-form" th:action="@{/users}" method="get">
-    <label for="email">Email:</label>
-    <input name="query" type="text" id="email">
-    <button class="btn"  type="submit">Search</button>
-</form>
+    <form id="search-results-research-form" th:action="@{/users}" method="get">
+        <h1>Search by first and/or last name</h1>
+        <input name="firstName" type="text" id="firstName" placeholder="First name" >
+        <input name="lastName" type="text" id="lastName" placeholder="Last name">
+        <button class="btn"  type="submit">Search</button>
+    </form>
 
 
 </div>
