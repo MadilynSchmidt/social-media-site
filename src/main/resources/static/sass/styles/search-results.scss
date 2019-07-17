@@ -27,13 +27,19 @@
         text-align: center;
     }
 
+      h1{
+        margin-bottom: 0;
+        margin-top: 5px;
+        font-size: 20px;
+    }
+
 }
 
 #search-results-container{
     margin: auto;
     display: inline-block;
-    width: 65%;
-    padding-left: 25%;
+    width: 50%;
+    padding-left: 100px;
     justify-content: center;
     line-height: 2.2;
 
@@ -59,6 +65,14 @@
             margin-left: 0;
             font-size: 20px;
         }
+
+         a:hover{
+            color: $darkgrey;
+         }
+
+        a{
+            color: $black;
+        }
 }
 
 #search-results-form{
@@ -71,6 +85,7 @@
         color: white;
         border: 1px solid grey;
         margin-top: 0;
+        width: 225px;
     }
 
     button:disabled{

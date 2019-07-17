@@ -35,6 +35,9 @@ public class User {
     @Transient
     private boolean hasReceivedRequestFromSearchedUser;
 
+    @Transient
+    private boolean userAndOtherUserAreFriends;
+
     public long getId(){
         return this.id;
     }
@@ -104,5 +107,13 @@ public class User {
 
     public void setHasReceivedRequestFromSearchedUser(boolean hasReceivedRequestFromSearchedUser) {
         this.hasReceivedRequestFromSearchedUser = hasReceivedRequestFromSearchedUser;
+    }
+
+    public boolean isUserAndOtherUserAreFriends() {
+        return userAndOtherUserAreFriends;
+    }
+
+    public void setUserAndOtherUserAreFriends(boolean userAndOtherUserAreFriends) {
+        this.userAndOtherUserAreFriends = userAndOtherUserAreFriends;
     }
 }

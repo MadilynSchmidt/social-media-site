@@ -20,10 +20,16 @@
     <ul>
 
         <li th:each="user : ${users}" th:class="${loggedInUserEmailAddress == user.getEmailAddress() ? 'logged-in-user' : ''}">
-            <p th:text="${user.getEmailAddress()}" ></p>
+            <a th:if="${user.isUserAndOtherUserAreFriends()}" th:text="${user.getFirstName() + ' ' + user.getLastName()}" th:href="@{users/{userId}(userId=${user.getId()})}"></a>
+            <p th:if="${!user.isUserAndOtherUserAreFriends()}" th:text="${user.getFirstName() + ' ' + user.getLastName()}"></p>
             <form id="search-results-form" th:if="${loggedInUserEmailAddress != user.getEmailAddress()}" th:action="@{/friend-requests}" method="post">
                 <input type="hidden" name="recipientId" th:value="${user.getId()}">
-                <button class="btn-lg btn-block" th:disabled="${user.isHasBeenSentFriendRequestByLoggedInUser() || user.isHasReceivedRequestFromSearchedUser()}"  th:text='${user.isHasReceivedRequestFromSearchedUser() ? "Pending Friend Request" : user.isHasBeenSentFriendRequestByLoggedInUser() ? "Friend Request Sent" : "Send Friend Request" }' type="submit"></button>
+                <button class="btn-lg btn-block"
+                        th:if="${!user.isUserAndOtherUserAreFriends()}"
+                        th:text='${user.isHasReceivedRequestFromSearchedUser() ? "Pending Request"
+                        : user.isHasBeenSentFriendRequestByLoggedInUser() ? "Friend Request Sent" : "Send Friend Request" }'
+                        type="submit"
+                        th:disabled="${user.isHasBeenSentFriendRequestByLoggedInUser() || user.isHasReceivedRequestFromSearchedUser()}"></button>
             </form>
         </li>
 
@@ -31,14 +37,13 @@
 
     <div  th:if="${users.size() == 0}">There are no results found.</div>
 
-
 </div>
-    <form id="search-results-research-form" th:action="@{/users}" method="get">
-        <h1>Search by first and/or last name</h1>
-        <input name="firstName" type="text" id="firstName" placeholder="First name" >
-        <input name="lastName" type="text" id="lastName" placeholder="Last name">
-        <button class="btn"  type="submit">Search</button>
-    </form>
+<form id="search-results-research-form" th:action="@{/users}" method="get">
+    <h1>Search by first and/or last name</h1>
+    <input name="firstName" type="text" id="firstName" placeholder="First name" >
+    <input name="lastName" type="text" id="lastName" placeholder="Last name">
+    <button class="btn"  type="submit">Search</button>
+</form>
 
 
 </div>
