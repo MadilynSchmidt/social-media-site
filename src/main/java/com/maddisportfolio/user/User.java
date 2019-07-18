@@ -36,7 +36,7 @@ public class User {
     private boolean hasReceivedRequestFromSearchedUser;
 
     @Transient
-    private boolean userAndOtherUserAreFriends;
+    private boolean isFriendsWithLoggedInUser;
 
     public long getId(){
         return this.id;
@@ -110,10 +110,10 @@ public class User {
     }
 
     public boolean isUserAndOtherUserAreFriends() {
-        return userAndOtherUserAreFriends;
+        return isFriendsWithLoggedInUser;
     }
 
     public void setUserAndOtherUserAreFriends(boolean userAndOtherUserAreFriends) {
-        this.userAndOtherUserAreFriends = userAndOtherUserAreFriends;
+        this.isFriendsWithLoggedInUser = userAndOtherUserAreFriends;
     }
 }
