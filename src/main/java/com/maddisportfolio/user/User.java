@@ -109,11 +109,11 @@ public class User {
         this.hasReceivedRequestFromSearchedUser = hasReceivedRequestFromSearchedUser;
     }
 
-    public boolean isUserAndLoggedInUserAreFriends() {
+    public boolean isFriendsWithLoggedInUser() {
         return isFriendsWithLoggedInUser;
     }
 
-    public void setUserAndLoggedInUserAreFriends(boolean userAndLoggedInUserAreFriends) {
-        this.isFriendsWithLoggedInUser = userAndLoggedInUserAreFriends;
+    public void setFriendsWithLoggedInUser(boolean friendsWithLoggedInUser) {
+        this.isFriendsWithLoggedInUser = friendsWithLoggedInUser;
     }
 }
