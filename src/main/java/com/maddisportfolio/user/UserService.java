@@ -77,7 +77,7 @@ public class UserService {
             User correspondingUser = searchResults.stream().filter(x -> x.getId() == friendRequest.getRecipient().getId()).findFirst().get();
             correspondingUser.setHasBeenSentFriendRequestByLoggedInUser(true);
             if(friendRequest.getFriendRequestStatus() == FriendRequestStatus.ACCEPTED){
-                correspondingUser.setUserAndOtherUserAreFriends(true);
+                correspondingUser.setUserAndLoggedInUserAreFriends(true);
             }
         }
         List<FriendRequest> pendingRequestsToLoggedInUser = friendRequestDao.findAllByRecipientAndFriendRequestStatus(loggedInUser, FriendRequestStatus.PENDING);
@@ -93,7 +93,7 @@ public class UserService {
             Optional<User> acceptedSender = searchResults.stream().filter(x -> x.getId() == friendRequest.getSender().getId()).findFirst();
             if (acceptedSender.isPresent()) {
                 loggedInUser.setHasReceivedRequestFromSearchedUser(true);
-                acceptedSender.get().setUserAndOtherUserAreFriends(true);
+                acceptedSender.get().setUserAndLoggedInUserAreFriends(true);
             }
         }
         return searchResults;
