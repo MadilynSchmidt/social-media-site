@@ -143,8 +143,8 @@ public class FriendRequestServiceTest {
         //Assert
         Assert.assertEquals(friendRequests, returnedList);
         Assert.assertEquals(2, returnedList.size());
-        Assert.assertEquals(friendRequest1.getFriendRequestStatus(), FriendRequestStatus.PENDING);
-        Assert.assertEquals(friendRequest1.getFriendRequestStatus(), FriendRequestStatus.PENDING);
+        Assert.assertEquals(returnedList.get(0).getFriendRequestStatus(), FriendRequestStatus.PENDING);
+        Assert.assertEquals(returnedList.get(1).getFriendRequestStatus(), FriendRequestStatus.PENDING);
 
     }
 

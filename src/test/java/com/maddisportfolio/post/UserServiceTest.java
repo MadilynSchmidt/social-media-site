@@ -36,7 +36,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testGetUser() {
+    public void testResult() {
         //Arrange
         String loggedInUserEmailAddress = "navi@cat.com";
         User navi = new User();
