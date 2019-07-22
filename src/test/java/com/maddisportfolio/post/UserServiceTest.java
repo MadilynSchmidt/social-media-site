@@ -39,14 +39,14 @@ public class UserServiceTest {
     public void testGetUser() {
         //Arrange
         String loggedInUserEmailAddress = "navi@cat.com";
-        User result = new User();
-        Mockito.when(userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress)).thenReturn(result);
+        User navi = new User();
+        Mockito.when(userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress)).thenReturn(navi);
 
         //Act
-        User getUser = serviceUnderTest.getUser(loggedInUserEmailAddress);
+        User result = serviceUnderTest.getUser(loggedInUserEmailAddress);
 
         //Assert
-        Assert.assertEquals(result, getUser);
+        Assert.assertEquals(navi, result);
 
     }
 
