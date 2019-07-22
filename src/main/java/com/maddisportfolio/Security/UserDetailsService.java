@@ -1,4 +1,4 @@
-package com.maddisportfolio.security;
+package com.maddisportfolio.Security;
 
 import com.maddisportfolio.user.User;
 import com.maddisportfolio.user.UserDao;
