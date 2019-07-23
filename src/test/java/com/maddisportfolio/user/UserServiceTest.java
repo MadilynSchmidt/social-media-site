@@ -370,13 +370,9 @@ public class UserServiceTest {
     public void testUpdateUserProfile(){
         User user = new User();
         String firstName = "Kupo";
-        user.setFirstName(firstName);
         String lastName = "McConville";
-        user.setLastName(lastName);
         String location = "Colorado Springs";
-        user.setLocation(location);
         String timeZone = "MST";
-        user.setTimezone(timeZone);
         String loggedInUserEmailAddress = "kupo@cat.com";
         user.setEmailAddress(loggedInUserEmailAddress);
 
@@ -384,6 +380,14 @@ public class UserServiceTest {
 
         serviceUnderTest.updateUserProfile(firstName, lastName, location, loggedInUserEmailAddress, timeZone);
 
+        ArgumentCaptor<User> argumentCaptor = ArgumentCaptor.forClass(User.class);
+        Mockito.verify(userDao).save(argumentCaptor.capture());
+        User returnedUser = argumentCaptor.getValue();
+        Assert.assertEquals(firstName, returnedUser.getFirstName());
+        Assert.assertEquals(lastName, returnedUser.getLastName());
+        Assert.assertEquals(location, returnedUser.getLocation());
+        Assert.assertEquals(loggedInUserEmailAddress, returnedUser.getEmailAddress());
+        Assert.assertEquals(timeZone, returnedUser.getTimezone());
         Mockito.verify(userDao).save(user);
     }
 
