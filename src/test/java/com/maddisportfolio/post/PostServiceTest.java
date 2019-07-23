@@ -5,9 +5,10 @@ import com.maddisportfolio.user.UserDao;
 import com.maddisportfolio.user.UserService;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.*;
-
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class PostServiceTest {
 
     @Mock
     UserDao userDao;
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
     @Before
     public void setup(){
@@ -82,12 +86,105 @@ public class PostServiceTest {
         Assert.assertEquals(2, result.size());
         Assert.assertEquals(postOne, result.get(0));
         Assert.assertEquals(postTwo, result.get(1));
+    }
 
+    @Test
+    public void testDeletePostThrowRuntimeException() throws RuntimeException{
+        //Arrange
+        String loggedInUserEmailAddress = "navi@cat.com";
+        long postId = 1;
+        User navi = new User();
+        User kupo = new User();
+        long wrongId = 3;
+        kupo.setId(wrongId);
+        Post post = new Post();
+        post.setId(postId);
+        long userId = 2;
+        navi.setId(userId);
+        post.setUser(kupo);
 
+        expectedException.expect(RuntimeException.class);
 
+        Mockito.when(userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress)).thenReturn(navi);
+        Mockito.when(postDao.getOne(postId)).thenReturn(post);
 
+        //Act
+        serviceUnderTest.deletePost(loggedInUserEmailAddress, postId);
+    }
 
+    @Test
+    public void testDeletePost() throws RuntimeException{
+        //Arrange
+        String loggedInUserEmailAddress = "navi@cat.com";
+        long postId = 1;
+        User navi = new User();
+        Post post = new Post();
+        post.setId(postId);
+        long userId = 2;
+        navi.setId(userId);
+        post.setUser(navi);
 
+        Mockito.when(userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress)).thenReturn(navi);
+        Mockito.when(postDao.getOne(postId)).thenReturn(post);
+
+        //Act
+        serviceUnderTest.deletePost(loggedInUserEmailAddress, postId);
+
+        //Assert
+        Mockito.verify(postDao).delete(post);
+    }
+
+    @Test
+    public void testUpdatePostThrowsNewRuntimeException() throws RuntimeException {
+        //Arrange
+        String loggedInUserEmailAddress = "navi@cat.com";
+        long postId = 1;
+        User navi = new User();
+        User kupo = new User();
+        long wrongId = 3;
+        kupo.setId(wrongId);
+        Post post = new Post();
+        post.setId(postId);
+        long userId = 2;
+        navi.setId(userId);
+        post.setUser(kupo);
+
+        expectedException.expect(RuntimeException.class);
+
+        Mockito.when(userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress)).thenReturn(navi);
+        Mockito.when(postDao.getOne(postId)).thenReturn(post);
+
+        //Act
+        serviceUnderTest.updatePost(loggedInUserEmailAddress, postId, post);
+    }
+
+    @Test
+    public void testUpdatePost() throws RuntimeException{
+        //Arrange
+        String loggedInUserEmailAddress = "navi@cat.com";
+        long postId = 1;
+        User navi = new User();
+        Post post = new Post();
+        post.setId(postId);
+        long userId = 2;
+        navi.setId(userId);
+        post.setUser(navi);
+        String content = "Hello, I'm sassy";
+        post.setContent(content);
+
+        Mockito.when(userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress)).thenReturn(navi);
+        Mockito.when(postDao.getOne(postId)).thenReturn(post);
+
+        //Act
+        serviceUnderTest.updatePost(loggedInUserEmailAddress, postId, post);
+
+        //Assert
+        ArgumentCaptor<Post> argumentCaptor = ArgumentCaptor.forClass(Post.class);
+        Mockito.verify(postDao).save(argumentCaptor.capture());
+        Post returnedPost = argumentCaptor.getValue();
+        Assert.assertEquals(content, returnedPost.getContent());
+
+        Mockito.verify(postDao).save(post);
     }
 
 
