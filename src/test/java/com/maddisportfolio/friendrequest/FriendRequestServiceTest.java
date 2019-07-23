@@ -1,4 +1,4 @@
-package com.maddisportfolio.post;
+package com.maddisportfolio.friendrequest;
 
 import com.maddisportfolio.friendrequest.FriendRequest;
 import com.maddisportfolio.friendrequest.FriendRequestDao;
@@ -285,11 +285,6 @@ public class FriendRequestServiceTest {
         Assert.assertEquals(kupo, friends.get(1));
         Assert.assertEquals(kimahri, friends.get(2));
         Assert.assertEquals(nixie, friends.get(3));
-
-
-
-
-
     }
 
 }
