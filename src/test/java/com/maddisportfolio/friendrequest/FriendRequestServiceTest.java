@@ -108,9 +108,11 @@ public class FriendRequestServiceTest {
         navi.setId(30);
         togepi.setId(35);
         FriendRequest friendRequest = new FriendRequest();
+        friendRequest.setFriendRequestStatus(FriendRequestStatus.DECLINED);
 
         Mockito.when(userDao.findOneByEmailAddressIgnoreCase(senderEmailAddress)).thenReturn(togepi);
         Mockito.when(userDao.findById(recipientId)).thenReturn(Optional.of(navi));
+        Mockito.when(friendRequestDao.findOneBySenderAndRecipient(navi, togepi)).thenReturn(friendRequest);
 
         //Act
         serviceUnderTest.createFriendRequest(senderEmailAddress, recipientId);
@@ -245,6 +247,34 @@ public class FriendRequestServiceTest {
 
         //Assert
         Mockito.verify(friendRequestDao).save(friendRequest);
+    }
+
+    @Test
+    public void testDeclineFriendRequestWhenLoggedInUserAlreadyHasDeclinedAFriendRequestFromCurrentSender(){
+        //Arrange
+        User navi = new User();
+        User kupo = new User();
+        FriendRequest friendRequest = new FriendRequest();
+        String loggedInUserEmailAddress = "navi@cat.com";
+        FriendRequest friendRequestToDecline = new FriendRequest();
+        friendRequestToDecline.setSender(kupo);
+        friendRequestToDecline.setRecipient(navi);
+        long recipientId = 1;
+        navi.setId(recipientId);
+        long friendRequestId = 2;
+        friendRequestToDecline.setId(friendRequestId);
+        navi.setEmailAddress(loggedInUserEmailAddress);
+        friendRequest.setSender(navi);
+        friendRequest.setRecipient(kupo);
+        friendRequest.setFriendRequestStatus(FriendRequestStatus.DECLINED);
+        Mockito.when(friendRequestDao.findOneBySenderAndRecipient(navi, kupo)).thenReturn(friendRequest);
+        Mockito.when(userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress)).thenReturn(navi);
+        Mockito.when(friendRequestDao.getOne(friendRequestId)).thenReturn(friendRequestToDecline);
+        //Act
+        serviceUnderTest.declineFriendRequest(loggedInUserEmailAddress, friendRequestId);
+
+        //Assert
+        Mockito.verify(friendRequestDao).delete(friendRequest);
     }
 
 

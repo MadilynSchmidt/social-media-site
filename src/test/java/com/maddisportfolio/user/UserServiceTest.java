@@ -367,6 +367,40 @@ public class UserServiceTest {
     }
 
     @Test
+    public void testDeclineRequestToLoggedInUser(){
+        User navi = new User();
+        User kupo = new User();
+        long id = 10;
+        kupo.setId(id);
+        String firstName = "kupo";
+        kupo.setFirstName(firstName);
+        String lastName = "mcconville";
+        kupo.setLastName(lastName);
+        String loggedInUserEmailAddress = "navi@cat.com";
+        navi.setEmailAddress(loggedInUserEmailAddress);
+        FriendRequest friendRequest = new FriendRequest();
+        List<FriendRequest> correspondingFriendRequests = new ArrayList<>();
+        correspondingFriendRequests.add(friendRequest);
+        friendRequest.setFriendRequestStatus(FriendRequestStatus.DECLINED);
+        friendRequest.setRecipient(navi);
+        friendRequest.setSender(kupo);
+        List<User> searchResults = new ArrayList<>();
+        searchResults.add(kupo);
+
+        Mockito.when(userDao.findOneByEmailAddressIgnoreCase(loggedInUserEmailAddress)).thenReturn(navi);
+        Mockito.when(userDao.findByFirstNameIgnoreCaseContainingAndLastNameIgnoreCaseContaining(firstName, lastName)).thenReturn(searchResults);
+        Mockito.when(friendRequestDao.findAllByRecipientAndFriendRequestStatus(navi, FriendRequestStatus.DECLINED)).thenReturn(correspondingFriendRequests);
+
+        //Act
+        List<User> returnedList = serviceUnderTest.searchUsers(firstName, lastName, loggedInUserEmailAddress);
+
+        //Assert
+        Assert.assertEquals(1, returnedList.size());
+        Assert.assertFalse(navi.isHasReceivedRequestFromSearchedUser());
+        Assert.assertEquals(kupo, returnedList.get(0));
+    }
+
+    @Test
     public void testUpdateUserProfile(){
         User user = new User();
         String firstName = "Kupo";
