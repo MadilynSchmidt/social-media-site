@@ -96,6 +96,14 @@ public class UserService {
                 acceptedSender.get().setFriendsWithLoggedInUser(true);
             }
         }
+        List<FriendRequest> declinedRequestToLoggedInUser = friendRequestDao.findAllByRecipientAndFriendRequestStatus(loggedInUser, FriendRequestStatus.DECLINED);
+        for(FriendRequest friendRequest : declinedRequestToLoggedInUser) {
+            Optional<User> correspondingSender = searchResults.stream().filter(x -> x.getId() == friendRequest.getSender().getId()).findFirst();
+            if (correspondingSender.isPresent()) {
+                loggedInUser.setHasReceivedRequestFromSearchedUser(false);
+            }
+        }
+
         return searchResults;
     }
 

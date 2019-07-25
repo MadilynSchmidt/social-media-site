@@ -26,7 +26,7 @@ public class FriendRequestSerivce {
             return;
         }
         FriendRequest alreadyPendingRequest = friendRequestDao.findOneBySenderAndRecipient(recipient, sender);
-        if(alreadyPendingRequest != null){
+        if(alreadyPendingRequest != null && alreadyPendingRequest.getFriendRequestStatus() != FriendRequestStatus.DECLINED){
             return;
         }
         FriendRequest friendRequest = new FriendRequest();
@@ -57,6 +57,11 @@ public class FriendRequestSerivce {
         FriendRequest friendRequest = friendRequestDao.getOne(friendRequestId);
         if(!usersAreSamePerson(loggedInUser, friendRequest.getRecipient())){
             return;
+        }
+
+        FriendRequest declinedFriendRequestByLoggedInUser = friendRequestDao.findOneBySenderAndRecipient(loggedInUser, friendRequest.getSender());
+        if(declinedFriendRequestByLoggedInUser != null && declinedFriendRequestByLoggedInUser.getFriendRequestStatus() == FriendRequestStatus.DECLINED){
+            friendRequestDao.delete(declinedFriendRequestByLoggedInUser);
         }
         friendRequest.setFriendRequestStatus((FriendRequestStatus.DECLINED));
         friendRequestDao.save(friendRequest);
